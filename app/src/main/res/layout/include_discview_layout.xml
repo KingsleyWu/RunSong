@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    >
+    <FrameLayout
+        android:id="@+id/frameLayout_Disk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        >
+        <ImageView
+            android:src="@mipmap/disc"
+            android:contentDescription="@null"
+            android:id="@+id/imageView_Disk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <kingsley.www.ransong.view.CircleImageView
+            android:id="@+id/imageView_Disk_Header"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            />
+        <TextView
+            android:id="@+id/textView_Lrc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp"
+            android:text="lrc显示在这里" />
+    </FrameLayout>
+    <ImageView
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@null"
+        android:id="@+id/imageView_Disk_Pin"
+        android:src="@mipmap/pin"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">跑歌</string>
+    <string name="splash1">splash1</string>
+    <string name="splash_btn">进入--＞</string>
+    <string name="hint">搜索音乐 歌词 电台</string>
+    <string name="header_title">Kingsley Music</string>
+    <string name="drawer_close">Close</string>
+    <string name="drawer_open">Open</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="unknown">未知</string>
+</resources>

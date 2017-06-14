@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\system_settings.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\system_settings.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\my_collection.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\my_collection.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\app_icon.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\app_icon.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\recently_played.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\recently_played.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\music.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\music.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\music_black.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\music_black.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\exit.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\exit.png"
+    }
+]

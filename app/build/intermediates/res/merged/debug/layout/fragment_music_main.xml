@@ -1,0 +1,27 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/music_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_scrollFlags="enterAlways"
+    android:fitsSystemWindows="true"
+    tools:context="kingsley.www.runsong.fragment.MusicFragment">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mainMusic_ViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/mainMusic_TabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/titleRed"
+            app:tabGravity="fill"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#FFFFFFFF"
+            app:tabIndicatorColor="#FFFFFFFF">
+        </android.support.design.widget.TabLayout>
+    </android.support.v4.view.ViewPager>
+
+</FrameLayout>

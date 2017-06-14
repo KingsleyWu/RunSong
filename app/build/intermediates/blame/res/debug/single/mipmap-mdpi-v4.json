@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\i_love_my_music.jpg",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\i_love_my_music.jpg"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\play_music_default_bg.jpeg",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\play_music_default_bg.jpeg"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\splash2.jpeg",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\splash2.jpeg"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\splash1.jpg",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\splash1.jpg"
+    }
+]

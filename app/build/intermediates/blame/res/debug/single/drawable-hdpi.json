@@ -1,0 +1,70 @@
+[
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\z9.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\z9.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_run_selected.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_run_selected.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_loading2.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\ic_loading2.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\music.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\music.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\za.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\za.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_loading1.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\ic_loading1.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_book_normal.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_book_normal.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_loading4.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\ic_loading4.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_run_normal.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_run_normal.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_music_normal.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_music_normal.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_loading3.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\ic_loading3.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\bg.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\bg.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\play_page_needle.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\play_page_needle.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\z8.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\z8.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\mic.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\mic.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_book_selected.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_book_selected.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\toolbar_music_selected.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_music_selected.png"
+    }
+]
