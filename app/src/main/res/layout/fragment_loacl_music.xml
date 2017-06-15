@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:background="#A3a3a3a3"
             android:layout_height="?attr/actionBarSize">
-            <kingsley.www.ransong.view.CircleImageView
+            <kingsley.www.runsong.view.CircleImageView
                 android:id="@+id/localMusic_Iv_songImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
