@@ -6,5 +6,9 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\online_music_list_profile_headline.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-xxhdpi\\online_music_list_profile_headline.png"
     }
 ]

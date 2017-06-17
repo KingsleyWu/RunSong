@@ -4,9 +4,18 @@
     android:layout_height="match_parent"
     tools:context="kingsley.www.runsong.fragment.MusicNetFragment">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/localMusicRecyclerView"
+        android:id="@+id/netMusicRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A62F20">
+        android:background="@null">
     </android.support.v7.widget.RecyclerView>
+    <include
+        android:id="@+id/netMusic_loading"
+        layout="@layout/include_loading"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/netMusic_load_fail"
+        layout="@layout/include_load_fail"
+        android:visibility="gone" />
 </FrameLayout>

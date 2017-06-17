@@ -53,14 +53,14 @@ public class HttpClient {
                         public void onResponse(OnLineMusicList response, int id) {
                             Log.i(TAG, "onResponse: response ="+response.getSong_list());
                             musicList.addAll(response.getSong_list());
-                            for (OnLineMusic music:musicList) {
+                           /* for (OnLineMusic music:musicList) {
                                 //music.toString();
                                 Log.i(TAG, "onResponse: music.toString()"+music.toString());
-                            }
+                            }*/
                         }
                     });
-
     }
+
     public static void getDownloadMusicInfo(String id){
         music = new Music();
         OkHttpUtils.get().url(BASE_URL)

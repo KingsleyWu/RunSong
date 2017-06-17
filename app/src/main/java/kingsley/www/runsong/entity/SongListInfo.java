@@ -83,4 +83,16 @@ public class SongListInfo implements Serializable {
     public void setMusic3(String music3) {
         this.music3 = music3;
     }
+
+    @Override
+    public String toString() {
+        return "SongListInfo{" +
+                "title='" + title + '\'' +
+                ", type='" + type + '\'' +
+                ", coverUrl='" + coverUrl + '\'' +
+                ", music1='" + music1 + '\'' +
+                ", music2='" + music2 + '\'' +
+                ", music3='" + music3 + '\'' +
+                '}';
+    }
 }

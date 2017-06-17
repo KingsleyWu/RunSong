@@ -121,7 +121,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
             case R.id.songItem_Iv_More:
                 View  v = (View) view.getParent().getParent();
                 position = mRecyclerView.getChildAdapterPosition(v);
-                HttpClient.getSongListInfo("2",10,0);
+                //HttpClient.getSongListInfo("2",10,0);
                 showShareDiaLog(position);
                 break;
         }

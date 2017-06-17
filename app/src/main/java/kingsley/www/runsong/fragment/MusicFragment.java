@@ -95,16 +95,17 @@ public class MusicFragment extends BaseFragment {
                     if (musicLocalFragment == null) {
                         musicLocalFragment = new MusicLocalFragment();
                         CacheMusic.IsMusicChange = (IIsMusicChange) musicLocalFragment;
-                        activity.mMusicLocalFragment = (MusicLocalFragment) musicLocalFragment;
+                        //activity.mMusicLocalFragment = (MusicLocalFragment) musicLocalFragment;
                     }
                     return musicLocalFragment;
 
                 case NETMUSIC:
+                    default:
                     if (musicNetFragment == null)
                         musicNetFragment = new MusicNetFragment();
+                        Log.i(TAG, "getItem: MusicNetFragment");
                     return musicNetFragment;
             }
-            return null;
         }
 
         @Override

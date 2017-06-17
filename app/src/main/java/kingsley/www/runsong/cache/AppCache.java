@@ -41,4 +41,8 @@ public class AppCache {
         getInstance().mPlayService = service;
     }
 
+    public static List<SongListInfo> getSongListInfos() {
+        return getInstance().mSongListInfos;
+    }
+
 }

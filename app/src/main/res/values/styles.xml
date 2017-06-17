@@ -7,6 +7,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <style name="AppTheme.Text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="AppTheme.Divider">
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <!--BlurringView-->
     <declare-styleable name="PxBlurringView">
         <attr name="blurRadius" format="integer"/>
         <attr name="downSampleFactor" format="integer"/>

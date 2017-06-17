@@ -83,6 +83,7 @@ ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:30:
 		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:30:19-61
 uses-sdk
 INJECTED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.jakewharton:butterknife:8.6.0] C:\Users\Administrator\.android\build-cache\f59076872cf6255752033fda0cf76389621a1985\output\AndroidManifest.xml:5:5-43
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Administrator\.android\build-cache\cdb8b8e041a83585a8133dbbd04578ea75f1a745\output\AndroidManifest.xml:5:5-7:41
 MERGED from [com.github.chrisbanes:PhotoView:2.0.0] C:\Users\Administrator\.android\build-cache\0248a0e61458243c5da7e33108b2e7f63062f5bb\output\AndroidManifest.xml:8:5-10:41
 MERGED from [com.android.support:design:25.3.1] C:\Users\Administrator\.android\build-cache\3e3c1aa49faecb7135c77df9bcfca1adacac6a76\output\AndroidManifest.xml:21:5-23:62
