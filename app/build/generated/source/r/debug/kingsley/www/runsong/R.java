@@ -3781,10 +3781,13 @@ containing a value of this type.
         public static final int path_password_eye_mask_visible=0x7f080030;
         public static final int path_password_strike_through=0x7f080031;
         public static final int search_menu_title=0x7f080013;
-        public static final int splash1=0x7f080032;
-        public static final int splash_btn=0x7f080033;
+        public static final int song_list_item_title_1=0x7f080032;
+        public static final int song_list_item_title_2=0x7f080033;
+        public static final int song_list_item_title_3=0x7f080034;
+        public static final int splash1=0x7f080035;
+        public static final int splash_btn=0x7f080036;
         public static final int status_bar_notification_info_overflow=0x7f080014;
-        public static final int unknown=0x7f080034;
+        public static final int unknown=0x7f080037;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f0a00a2;

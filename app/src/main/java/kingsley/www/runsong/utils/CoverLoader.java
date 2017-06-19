@@ -39,7 +39,10 @@ public class CoverLoader {
         options.inPreferredConfig = Bitmap.Config.RGB_565;
         return BitmapFactory.decodeFile(path, options);
     }
+
     public Bitmap loadBitmapForPath(String path, int length){
         return loadBitmap(path,length);
     }
+
+
 }

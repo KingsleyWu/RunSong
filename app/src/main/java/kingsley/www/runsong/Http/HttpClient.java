@@ -35,7 +35,8 @@ public class HttpClient {
     private static List<OnLineMusic> musicList;
     private static Music music;
     private static final String TAG = "HttpClient";
-    public static void getSongListInfo(String type, int size, int offset) {
+
+    public static void getSongListInfo(String type, int size, int offset, final HttpCallBack<OnLineMusicList> callBack) {
             musicList = new ArrayList<>();
             OkHttpUtils.get().url(BASE_URL)
                     .addParams(PARAM_METHOD, METHOD_GET_MUSIC_LIST)
@@ -51,8 +52,8 @@ public class HttpClient {
 
                         @Override
                         public void onResponse(OnLineMusicList response, int id) {
-                            Log.i(TAG, "onResponse: response ="+response.getSong_list());
-                            musicList.addAll(response.getSong_list());
+                            //Log.i(TAG, "onResponse: response ="+response.getSong_list());
+                            callBack.onSuccess(response);
                            /* for (OnLineMusic music:musicList) {
                                 //music.toString();
                                 Log.i(TAG, "onResponse: music.toString()"+music.toString());

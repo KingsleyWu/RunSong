@@ -1253,10 +1253,13 @@ int string path_password_eye_mask_strike_through 0x7f08002f
 int string path_password_eye_mask_visible 0x7f080030
 int string path_password_strike_through 0x7f080031
 int string search_menu_title 0x7f080013
-int string splash1 0x7f080032
-int string splash_btn 0x7f080033
+int string song_list_item_title_1 0x7f080032
+int string song_list_item_title_2 0x7f080033
+int string song_list_item_title_3 0x7f080034
+int string splash1 0x7f080035
+int string splash_btn 0x7f080036
 int string status_bar_notification_info_overflow 0x7f080014
-int string unknown 0x7f080034
+int string unknown 0x7f080037
 int style AlertDialog_AppCompat 0x7f0a00a2
 int style AlertDialog_AppCompat_Light 0x7f0a00a3
 int style Animation_AppCompat_Dialog 0x7f0a00a4

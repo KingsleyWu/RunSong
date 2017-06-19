@@ -36,12 +36,12 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\909f943e3ba8550311f1ed611b129c75fb0038e6\\output\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_navigation_item.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\3e3c1aa49faecb7135c77df9bcfca1adacac6a76\\output\\res\\layout\\design_bottom_navigation_item.xml"
-    },
-    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_load_fail.xml",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\include_load_fail.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_navigation_item.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\3e3c1aa49faecb7135c77df9bcfca1adacac6a76\\output\\res\\layout\\design_bottom_navigation_item.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\widget_bottom_dialog.xml",
@@ -56,12 +56,12 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\909f943e3ba8550311f1ed611b129c75fb0038e6\\output\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\909f943e3ba8550311f1ed611b129c75fb0038e6\\output\\res\\layout\\abc_action_menu_layout.xml"
-    },
-    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\include_loading.xml",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\include_loading.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\909f943e3ba8550311f1ed611b129c75fb0038e6\\output\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main_content.xml",
