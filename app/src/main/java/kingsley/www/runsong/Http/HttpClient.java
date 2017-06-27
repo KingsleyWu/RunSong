@@ -52,12 +52,7 @@ public class HttpClient {
 
                         @Override
                         public void onResponse(OnLineMusicList response, int id) {
-                            //Log.i(TAG, "onResponse: response ="+response.getSong_list());
                             callBack.onSuccess(response);
-                           /* for (OnLineMusic music:musicList) {
-                                //music.toString();
-                                Log.i(TAG, "onResponse: music.toString()"+music.toString());
-                            }*/
                         }
                     });
     }
@@ -73,11 +68,10 @@ public class HttpClient {
                     public void onError(Call call, Exception e, int id) {
                         Log.i(TAG, "onError: ");
                     }
-
                     @Override
                     public void onResponse(DownloadInfo response, int id) {
                         music.setPath(response.getBitrate().getFile_link());
-                        Log.i(TAG, "onResponse: response.getBitrate().getFile_link()="+response.getBitrate().getFile_link()+"  -- id="+id);
+                        //Log.i(TAG, "onResponse: response.getBitrate().getFile_link()="+response.getBitrate().getFile_link()+"  -- id="+id);
                         AppCache.getPlayService().play(music);
                     }
                 });

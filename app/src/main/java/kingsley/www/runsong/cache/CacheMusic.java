@@ -16,23 +16,31 @@ import kingsley.www.runsong.m_interface.OnPlayerEventListener;
  */
 
 public class CacheMusic {
+
     private static CacheMusic cacheMusic;
-    public static IIsMusicChange IsMusicChange;
+
+    public static IIsMusicChange isMusicChange;
+
     public static OnPlayerEventListener onPlayerEventListener;
+
     private List<Music> mMusicList = new ArrayList<>();
+
     private CacheMusic (){}
+
     public static CacheMusic getInstance(){
         if (cacheMusic == null){
-            cacheMusic =new CacheMusic();
+            synchronized (CacheMusic.class) {
+                cacheMusic = new CacheMusic();
+            }
         }
         return cacheMusic;
     }
 
-    public List<Music> getmMusicList() {
+    public List<Music> getMusicList() {
         return mMusicList;
     }
 
-    public void setmMusicList(List<Music> mMusicList) {
+    public void setMusicList(List<Music> mMusicList) {
         this.mMusicList = mMusicList;
     }
 }

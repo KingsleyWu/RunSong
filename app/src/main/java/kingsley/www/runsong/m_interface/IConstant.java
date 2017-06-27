@@ -11,6 +11,8 @@ package kingsley.www.runsong.m_interface;
 public interface IConstant {
     String SPLASH_URL = "http://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1";
     String BASE_URL = "http://tingapi.ting.baidu.com/v1/restserver/ting";
+    String BASE_URL2 = "http://tingapi.ting.baidu.com/v1/";
+
     String METHOD_GET_MUSIC_LIST = "baidu.ting.billboard.billList";
     String METHOD_DOWNLOAD_MUSIC = "baidu.ting.song.play";
     String METHOD_ARTIST_INFO = "baidu.ting.artist.getInfo";

@@ -25,12 +25,17 @@ public class AppCache {
     private AppCache() {
     }
 
-    private static class SingletonHolder {
-        private static AppCache sAppCache = new AppCache();
-    }
+    private static AppCache INSTANCE;
 
     private static AppCache getInstance() {
-        return SingletonHolder.sAppCache;
+        if (INSTANCE == null){
+            synchronized (AppCache.class){
+                if (INSTANCE == null){
+                    INSTANCE = new AppCache();
+                }
+            }
+        }
+        return INSTANCE;
     }
 
     public static PlayService getPlayService() {

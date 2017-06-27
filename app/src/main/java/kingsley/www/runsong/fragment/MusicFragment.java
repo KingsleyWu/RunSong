@@ -94,7 +94,7 @@ public class MusicFragment extends BaseFragment {
                 case LOCALMUSIC:
                     if (musicLocalFragment == null) {
                         musicLocalFragment = new MusicLocalFragment();
-                        CacheMusic.IsMusicChange = (IIsMusicChange) musicLocalFragment;
+                        CacheMusic.isMusicChange = (IIsMusicChange) musicLocalFragment;
                         //activity.mMusicLocalFragment = (MusicLocalFragment) musicLocalFragment;
                     }
                     return musicLocalFragment;

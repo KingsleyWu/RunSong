@@ -38,6 +38,7 @@
             android:exported="true" />
 
         <activity android:name="kingsley.www.runsong.activity.PlayMusicActivity" />
+        <activity android:name="kingsley.www.runsong.activity.OnlineMusicActivity" />
     </application>
 
 </manifest>

@@ -9,7 +9,7 @@ import java.io.Serializable;
  * file change date : on 2017/6/5 21:32
  * version: 1.0
  */
-
+//为了实现intent传递信息,必须实现序列化
 public class SongListInfo implements Serializable {
     private String title;
     /**

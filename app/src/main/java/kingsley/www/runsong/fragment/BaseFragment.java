@@ -20,7 +20,7 @@ import kingsley.www.runsong.cache.CacheMusic;
  */
 
 public abstract class BaseFragment extends Fragment {
-    protected List<Music> mMusicList = CacheMusic.getInstance().getmMusicList();
+    protected List<Music> mMusicList = CacheMusic.getInstance().getMusicList();
     private static final String TAG = "BaseFragment";
     protected PlayService getPlayService() {
         PlayService playService = AppCache.getPlayService();

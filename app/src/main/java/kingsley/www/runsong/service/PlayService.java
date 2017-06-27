@@ -48,7 +48,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                 //加载本地歌曲数据
                 MusicUtils.scanMusic(getApplicationContext(), mMusicList);
                 //把本地歌曲数据给到CacheMusic
-                CacheMusic.getInstance().setmMusicList(mMusicList);
+                CacheMusic.getInstance().setMusicList(mMusicList);
                 //Log.i(TAG, "onCreate: mMusicList="+mMusicList);
             }
         }).start();
@@ -137,7 +137,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
     //歌曲变更需更新View的回调方法
     private void updateView(int mNextPlayPosition) {
         IIsMusicChange musicChange;
-        if ((musicChange = CacheMusic.IsMusicChange) != null)
+        if ((musicChange = CacheMusic.isMusicChange) != null)
             //播放位置变化
             musicChange.isMusicChange(mNextPlayPosition);
         if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null) {

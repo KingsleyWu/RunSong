@@ -172,7 +172,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onResume() {
         super.onResume();
-        Log.i(TAG, "onResume: "+CacheMusic.IsMusicChange);
+        Log.i(TAG, "onResume: "+CacheMusic.isMusicChange);
         //从PlayMusicActivity中返回时调用
         /*if (isFirstLocalMusicFragmentShow) {
             isFirstLocalMusicFragmentShow = false;
@@ -185,7 +185,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CacheMusic.IsMusicChange = null;
+        CacheMusic.isMusicChange = null;
     }
 
     @Override

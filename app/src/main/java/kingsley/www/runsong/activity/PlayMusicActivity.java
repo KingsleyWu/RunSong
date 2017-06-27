@@ -82,7 +82,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         setContentView(R.layout.activity_play_music);
         //用于把musicChange引用还回给MusicLocalFragment
         //iIsMusicChange = CacheMusic.IsMusicChange;
-        mMusicList = CacheMusic.getInstance().getmMusicList();
+        mMusicList = CacheMusic.getInstance().getMusicList();
         coverLoader = CoverLoader.getInstance();
         playService = getPlayService();
         position = 0;

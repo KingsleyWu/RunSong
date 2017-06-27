@@ -85,6 +85,7 @@ public class MusicLocalFragment extends BaseFragment
         mLocalMusicRecyclerView.setLayoutManager(layoutManager);
         adapter = new LocalMusicAdapter(getActivity(), mMusicList);
         mLocalMusicRecyclerView.setAdapter(adapter);
+
         mLocalMusicRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.HORIZONTAL));
 
         mLocalMusicLlPlayBar = (LinearLayout) view.findViewById(R.id.localMusic_Ll_playBar);
@@ -94,7 +95,7 @@ public class MusicLocalFragment extends BaseFragment
         mLocalMusicIvPlay = (ImageView) view.findViewById(R.id.localMusic_Iv_play);
         mLocalMusicIvMoreList = (ImageView) view.findViewById(R.id.localMusic_Iv_moreList);
         songId = Preferences.getCurrentSongId();
-        Log.i(TAG, "initView: songId=" + songId);
+        //Log.i(TAG, "initView: songId=" + songId);
         if (songId == -1) setView(0);
         else setView(getSongPosition());
     }
@@ -124,7 +125,7 @@ public class MusicLocalFragment extends BaseFragment
     }
 
     public void setView(int position) {
-        Log.i(TAG, "setView: mPosition =" + mPosition + "   position =" + position);
+       // Log.i(TAG, "setView: mPosition =" + mPosition + "   position =" + position);
         //boolean isPlaying = mPlayService.isPlaying();
         music = mMusicList.get(position);
         String path = music.getCoverPath();
@@ -179,13 +180,13 @@ public class MusicLocalFragment extends BaseFragment
                 mPosition = getSongPosition();
                 mPlayService.playPause(mPosition);
                 //setView(mPosition);
-                Log.i(TAG, "onClick: localMusic_Iv_play mPosition="+mPosition);
+                //Log.i(TAG, "onClick: localMusic_Iv_play mPosition="+mPosition);
                 break;
             case R.id.localMusic_Ll_playBar:
                 /*MainActivity activity = (MainActivity)context;
                 activity.showPlayMusicFragment();*/
                 context.startActivity(new Intent(context, PlayMusicActivity.class));
-                Log.i(TAG, "onClick: localMusic_Ll_playBar mPosition="+mPosition);
+                //Log.i(TAG, "onClick: localMusic_Ll_playBar mPosition="+mPosition);
                 break;
         }
     }

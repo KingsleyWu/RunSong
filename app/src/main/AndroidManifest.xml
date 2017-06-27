@@ -27,7 +27,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".activity.PlayMusicActivity"></activity>
+        <activity android:name=".activity.PlayMusicActivity" />
+        <activity android:name=".activity.OnlineMusicActivity"></activity>
     </application>
 
 </manifest>

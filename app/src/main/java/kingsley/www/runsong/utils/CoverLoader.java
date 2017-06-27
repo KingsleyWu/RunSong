@@ -12,13 +12,22 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class CoverLoader {
+    private static CoverLoader INSTANCE;
+
     private CoverLoader() {}
+
     public static CoverLoader getInstance() {
-        return SingletonHolder.instance;
+        if (INSTANCE == null){
+            synchronized (CoverLoader.class){
+                if (INSTANCE == null){
+                    INSTANCE = new CoverLoader();
+                }
+            }
+        }
+        return INSTANCE;
     }
-    private static class SingletonHolder {
-        private static CoverLoader instance = new CoverLoader();
-    }
+
+
     /**
      * 获得指定大小的bitmap
      */
