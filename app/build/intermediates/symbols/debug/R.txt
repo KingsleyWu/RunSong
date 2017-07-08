@@ -833,7 +833,7 @@ int id action_mode_bar 0x7f0f0068
 int id action_mode_bar_stub 0x7f0f0067
 int id action_mode_close_button 0x7f0f004a
 int id action_text 0x7f0f00cf
-int id actions 0x7f0f00dc
+int id actions 0x7f0f00dd
 int id activity_chooser_view_content 0x7f0f004b
 int id add 0x7f0f0026
 int id alertTitle 0x7f0f005f
@@ -900,7 +900,7 @@ int id frameLayout_Disk 0x7f0f00ba
 int id home 0x7f0f0004
 int id homeAsUp 0x7f0f001c
 int id icon 0x7f0f0050
-int id icon_group 0x7f0f00dd
+int id icon_group 0x7f0f00de
 int id ifRoom 0x7f0f0043
 int id image 0x7f0f004d
 int id imageView_Disk 0x7f0f00bb
@@ -990,7 +990,7 @@ int id progress_horizontal 0x7f0f0007
 int id radio 0x7f0f0064
 int id radioGroup_splashId 0x7f0f009d
 int id right 0x7f0f0035
-int id right_icon 0x7f0f00de
+int id right_icon 0x7f0f00dc
 int id right_side 0x7f0f00d7
 int id screen 0x7f0f0028
 int id scroll 0x7f0f0024

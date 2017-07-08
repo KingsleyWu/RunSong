@@ -96,14 +96,14 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         }
         //Log.i(TAG, "onCreate: position = " + position);
         isInitView = true;
-        initView(position, playMode);
+        initView(position);
         setListeners();
         //把musicChange引用替换为PlayMusicActivity
         //CacheMusic.IsMusicChange = this;
         //Log.i(TAG, "onCreate: "+playMode);
     }
     //初始化控件
-    private void initView(int position,int playMode) {
+    private void initView(int position) {
         //toolbar
         mPlayMusicToolbar = (Toolbar) findViewById(R.id.play_music_toolbar);
         mPlayMusicIvBack = (ImageView) findViewById(R.id.play_music_iv_back);
@@ -131,7 +131,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         mPlayMusicRotaView = (RelativeLayout) findViewById(R.id.play_music_rotaView);
         mPlayMusicIvPin = (ImageView) findViewById(R.id.play_music_iv_pin);
         mPlayMusicBlurringView = (BlurringView) findViewById(R.id.playMusicBlurringView);
-        setView(position,playMode);
+        setView(position);
         if (getPlayService().isPlaying()) {
             startRotaView();
             mPlayMusicIvPlayPause.setImageResource(R.mipmap.b_stop);
@@ -159,7 +159,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         mPlayMusicSeekBar.setOnSeekBarChangeListener(new MyOnSeekBarChangeListener());
     }
     //设置控件显示的内容
-    private void setView(int position, int playMode) {
+    private void setBarView(int position) {
         if (isInitView){
             switch (playMode) {
                 case IConstant.PLAY_MODE_LOOP:
@@ -172,6 +172,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
                     mPlayMusicIvPlayMode.setImageResource(R.mipmap.random);
                     break;
             }
+            isInitView = false;
         }
         Music music = mMusicList.get(position);
         String path = music.getCoverPath();
@@ -293,6 +294,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         view.startAnimation(rotateAnimation);
         view.invalidate();
     }
+
     public static void rotaView1(View view, long startOffset) {
         ObjectAnimator rotaViewAnimator = ObjectAnimator.ofFloat(view, "rotation", 0, 359);
         rotaViewAnimator.setDuration(10000);
@@ -302,7 +304,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         rotaViewAnimator.setRepeatCount(-1);
         view.setPivotX(view.getWidth()/2);
         view.setPivotY(view.getHeight()/2);
-        //view.invalidate();
+        view.invalidate();
     }
     //pin歌曲停止动画
     public static void stopRotaPin(View view, long startOffset) {
@@ -327,7 +329,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
     //自动下一曲时回调此方法
     @Override
     public void setView(int position) {
-        setView(position,playMode);
+        setBarView(position);
     }
     //播放时更新seekBar时调用
     @Override
@@ -336,17 +338,9 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         int mProgress= (int) (progress*100/songDuration);
         mPlayMusicSeekBar.setProgress(mProgress);
         final String date = FormatDateUtil.formatTime("mm:ss", progress);
-        //Log.i(TAG, "setSeekBar: date ="+date);
-        /*Message msg = Message.obtain();
-        msg.obj = date;
-        handler.sendMessage(msg);*/
-        mHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                setCurrentTimeView(date);
-            }
-        });
+        setCurrentTimeView(date);
     }
+
     //设置当前播放的时间进度
     private void setCurrentTimeView(String date){
         mPlayMusicTvCurrentPosition.setText(date);

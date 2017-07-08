@@ -36,7 +36,7 @@ public class BlurringView extends View {
         final Resources res = getResources();
         final int defaultBlurRadius = res.getInteger(R.integer.default_blur_radius);
         final int defaultDownSampleFactor = res.getInteger(R.integer.default_downSample_factor);
-        final int defaultOverlayColor = getResources().getColor(R.color.default_overlay_color,null);
+        final int defaultOverlayColor = context.getResources().getColor(R.color.default_overlay_color);
 
         initializeRenderScript(context);
 

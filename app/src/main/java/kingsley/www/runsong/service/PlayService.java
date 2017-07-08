@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
@@ -52,29 +53,23 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                 //Log.i(TAG, "onCreate: mMusicList="+mMusicList);
             }
         }).start();
-        Thread seekBarThread = new Thread(new Runnable() {
+        final Handler handler = new Handler(getMainLooper());
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    try {
-                        //确保是在设置了监听且是在播放的情况下回调setSeekBar方法
-                        if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null && mPlayer != null && isPlaying()) {
-                            onPlayerEventListener.setSeekBar(mPlayer.getCurrentPosition());
-                            Thread.sleep(1000);
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null && mPlayer != null && isPlaying()) {
+                    onPlayerEventListener.setSeekBar(mPlayer.getCurrentPosition());
                 }
+                handler.postDelayed(this,1000);
             }
-        });
+        }, 1000);
+
         if (mPlayer == null) mPlayer = new MediaPlayer();
         //设置异步加载监听
         mPlayer.setOnPreparedListener(this);
         //设置一首歌播放完毕后的监听
         mPlayer.setOnCompletionListener(this);
         mPlayer.setOnErrorListener(this);
-        seekBarThread.start();
     }
 
     //绑定服务器时调用

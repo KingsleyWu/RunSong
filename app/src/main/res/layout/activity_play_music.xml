@@ -72,6 +72,7 @@
                 android:id="@+id/play_music_iv_disc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:background="@null"
                 android:src="@mipmap/disc"
                 tools:ignore="ContentDescription" />
@@ -102,7 +103,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="15dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical">
             <TextView
@@ -170,6 +171,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingBottom="5dp"
             android:gravity="center_vertical">
             <android.support.v4.widget.Space
                 android:layout_width="35dp"

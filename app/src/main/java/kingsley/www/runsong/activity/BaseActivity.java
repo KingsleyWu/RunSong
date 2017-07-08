@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
@@ -23,11 +22,6 @@ import kingsley.www.runsong.service.PlayService;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected Handler mHandler = new Handler(Looper.getMainLooper());
-
-    @Override
-    public void setContentView(@LayoutRes int layoutResID) {
-        super.setContentView(layoutResID);
-    }
 
     protected void mStartActivity(Class activity){
         Intent intent = new Intent(getApplicationContext(),activity);

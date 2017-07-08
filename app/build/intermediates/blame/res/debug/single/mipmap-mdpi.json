@@ -92,12 +92,12 @@
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\next.png"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\share.png",
-        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\share.png"
-    },
-    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\ic_launcher.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\share.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-mdpi\\share.png"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi\\random.png",
