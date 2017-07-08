@@ -43,4 +43,5 @@ public class CacheMusic {
     public void setMusicList(List<Music> mMusicList) {
         this.mMusicList = mMusicList;
     }
+
 }
