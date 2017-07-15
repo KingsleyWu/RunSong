@@ -20,14 +20,12 @@ import kingsley.www.runsong.R;
 import kingsley.www.runsong.cache.CacheMusic;
 import kingsley.www.runsong.fragment.MusicFragment;
 import kingsley.www.runsong.fragment.MusicLocalFragment;
-import kingsley.www.runsong.fragment.PlayMusicFragment;
 
 public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, NavigationView.OnNavigationItemSelectedListener{
     private static final String TAG = "MainActivity";
     private DrawerLayout mDrawerLayout;
     private Toolbar mToolbar;
     private ActionBarDrawerToggle toggle;
-    private PlayMusicFragment mPlayMusicFragment;
     public MusicLocalFragment mMusicLocalFragment;
     private boolean isPlayFragmentShow;
     private boolean isFirstLocalMusicFragmentShow;
@@ -53,7 +51,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         getSupportActionBar().setTitle("");
         RadioGroup mRadioGroup = (RadioGroup) View.inflate(getApplicationContext(),R.layout.toolbar_radiogroup,null);
         //为Toolbar添加RadioGroup
-        mToolbar.addView(mRadioGroup,new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT,Toolbar.LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        mToolbar.addView(mRadioGroup,new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT,
+                Toolbar.LayoutParams.MATCH_PARENT, Gravity.CENTER));
         mRadioGroup.setOnCheckedChangeListener(this);
         mRadioGroup.check(R.id.toolbar_Rb_Music);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -109,6 +108,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         switch (item.getItemId()) {
             case R.id.drawerExitId:
                 mDrawerLayout.closeDrawer(GravityCompat.START);
+                getPlayService().onDestroy();
+                finish();
                 break;
             case R.id.drawerRecentlyPlayedId:
 
@@ -139,15 +140,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         }
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.setCustomAnimations(R.anim.fragment_slide_up, 0);
-        if (mPlayMusicFragment == null) {
-            mPlayMusicFragment = new PlayMusicFragment();
-            //如不把MusicLocalFragment隐藏会出现点击bug(可以在PlayMusicFragment中点击到mMusicLocalFragment的播放按钮)
-            if (mMusicLocalFragment != null)
-                ft.hide(mMusicLocalFragment);
-            ft.replace(android.R.id.content, mPlayMusicFragment);
-        } else {
-            ft.show(mPlayMusicFragment);
-        }
         ft.commitAllowingStateLoss();
         //isPlayFragmentShow = true;
     }
@@ -157,7 +149,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         ft.setCustomAnimations(0, R.anim.fragment_slide_down);
         if (mMusicLocalFragment != null)
             ft.show(mMusicLocalFragment);
-        ft.hide(mPlayMusicFragment);
         ft.commitAllowingStateLoss();
         isPlayFragmentShow = false;
     }
@@ -166,20 +157,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     @Override
     protected void onPause() {
         super.onPause();
-        //isFirstLocalMusicFragmentShow = true;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         Log.i(TAG, "onResume: "+CacheMusic.isMusicChange);
-        //从PlayMusicActivity中返回时调用
-        /*if (isFirstLocalMusicFragmentShow) {
-            isFirstLocalMusicFragmentShow = false;
-            MusicLocalFragment mlfragment = (MusicLocalFragment) CacheMusic.IsMusicChange;
-            mlfragment.isResumeInit = true;
-            mlfragment.setView(getPlayService().getPlayingPosition());
-        }*/
     }
 
     @Override
@@ -190,10 +173,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
 
     @Override
     public void onBackPressed() {
-        /*if (isPlayFragmentShow){
-            hidePlayMusicFragment();
-            return;
-        }*/
         super.onBackPressed();
     }
 }

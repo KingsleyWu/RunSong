@@ -19,9 +19,11 @@ import okhttp3.OkHttpClient;
  */
 
 public class MusicApplication extends Application {
+    public static MusicApplication instance;
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         initOkHttpUtils();
         initSharePreferences();
     }

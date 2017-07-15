@@ -1,7 +1,6 @@
 package kingsley.www.runsong.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.wevey.selector.dialog.DialogOnItemClickListener;
 import com.wevey.selector.dialog.NormalSelectionDialog;
@@ -19,11 +19,10 @@ import com.wevey.selector.dialog.NormalSelectionDialog;
 import java.util.ArrayList;
 import java.util.List;
 
-import kingsley.www.runsong.Http.HttpClient;
 import kingsley.www.runsong.R;
-import kingsley.www.runsong.activity.PlayMusicActivity;
 import kingsley.www.runsong.entity.Music;
 import kingsley.www.runsong.utils.CoverLoader;
+import kingsley.www.runsong.utils.FileUtil;
 import kingsley.www.runsong.view.CircleImageView;
 
 /**
@@ -58,13 +57,11 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
     private LayoutInflater layoutInflater;
     private CoverLoader coverLoader;
     private Context context;
-    private Intent intent;
     private RecyclerView mRecyclerView;
 
     public LocalMusicAdapter(Context context, List<Music> musics) {
         musicList = musics;
         this.context = context;
-        intent = new Intent(context, PlayMusicActivity.class);
         this.layoutInflater = LayoutInflater.from(context);
         coverLoader = CoverLoader.getInstance();
     }
@@ -96,7 +93,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Music music = musicList.get(position);
-        String path = music.getCoverPath();
+        String path = FileUtil.getAlbumFilePath(music);
         Bitmap songImage;
         if (path == null){
             songImage = BitmapFactory.decodeResource(context.getResources(),R.mipmap.i_love_my_music);
@@ -142,6 +139,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         super.onDetachedFromRecyclerView(recyclerView);
         mRecyclerView = null;
     }
+
     private void showShareDiaLog(final int mPosition){
         //设置item标题
         final ArrayList<String> s = new ArrayList<>();
@@ -151,7 +149,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         s.add("删除");
         dialog = new NormalSelectionDialog.Builder(context)
                 .setlTitleVisible(true)   //设置是否显示标题
-                .setTitleHeight(65)   //设置标题高度
+                .setTitleHeight(50)   //设置标题高度
                 .setTitleText("小伙子.想删除我?还是想分享我?")  //设置标题提示文本
                 .setTitleTextSize(14) //设置标题字体大小 sp
                 .setTitleTextColor(R.color.titleRed) //设置标题文本颜色
@@ -163,9 +161,8 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
                 .setOnItemListener(new DialogOnItemClickListener() {  //监听item点击事件
                     @Override
                     public void onItemClick(Button button, int position) {
-                        HttpClient.getDownloadMusicInfo("257535276");
-                        //String title = musicList.get(position).getTitle();
-                        //Toast.makeText(context, s.get(position)+": "+title, Toast.LENGTH_SHORT).show();
+                        String title = musicList.get(mPosition).getTitle();
+                        Toast.makeText(context, s.get(mPosition)+": "+title, Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 })
@@ -173,5 +170,12 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
                 .build();
         dialog.setDataList(s);
         dialog.show();
+    }
+
+    public void addAll(List<Music> musics,boolean isClear){
+        if (isClear){
+            musicList.clear();
+        }
+        musicList.addAll(musics);
     }
 }

@@ -1,5 +1,7 @@
 package kingsley.www.runsong.cache;
 
+import android.util.LongSparseArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class AppCache {
     private final List<Music> mMusicList = new ArrayList<>();
     // 歌单列表
     private final List<SongListInfo> mSongListInfos = new ArrayList<>();
+    // 下载歌单
+    public final LongSparseArray<String> mDownloadList = new LongSparseArray<>();
 
     private AppCache() {
     }
@@ -50,4 +54,12 @@ public class AppCache {
         return getInstance().mSongListInfos;
     }
 
+
+    public static LongSparseArray<String> getmDownloadList() {
+        return getInstance().mDownloadList;
+    }
+
+    public static List<Music> getmMusicList() {
+        return getInstance().mMusicList;
+    }
 }

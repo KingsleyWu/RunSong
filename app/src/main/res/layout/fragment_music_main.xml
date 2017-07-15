@@ -16,9 +16,8 @@
             android:id="@+id/mainMusic_TabLayout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            style="@style/MyCustomTabLayout"
             android:background="@color/titleRed"
-            app:tabGravity="fill"
-            app:tabMode="fixed"
             app:tabSelectedTextColor="#FFFFFFFF"
             app:tabIndicatorColor="#FFFFFFFF">
         </android.support.design.widget.TabLayout>

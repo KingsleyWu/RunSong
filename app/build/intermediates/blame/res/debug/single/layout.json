@@ -52,6 +52,10 @@
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\online_music_item.xml"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_play_music_layout.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\activity_play_music_layout.xml"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\9ea774c998f2b552de6a9ee68227ba733df086ed\\output\\res\\layout\\design_navigation_item_subheader.xml"
     },
@@ -216,16 +220,16 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\notification_template_icon_group.xml"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\net_music_list.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\net_music_list.xml"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\abc_activity_chooser_view_list_item.xml"
-    },
-    {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\net_music_list.xml",
-        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\net_music_list.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",

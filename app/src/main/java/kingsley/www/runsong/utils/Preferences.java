@@ -68,4 +68,20 @@ public class Preferences {
     private static void saveInt(String key, int value) {
         getPreferences().edit().putInt(key, value).apply();
     }
+
+    public static String getString(String key, String defValue) {
+        return getPreferences().getString(key, defValue);
+    }
+
+    public static void saveString(String key, String value) {
+        getPreferences().edit().putString(key, value).apply();
+    }
+
+    public static boolean getBoolean(String key, boolean defValue) {
+        return getPreferences().getBoolean(key, defValue);
+    }
+
+    public static void saveBoolean(String key, boolean value) {
+        getPreferences().edit().putBoolean(key, value).apply();
+    }
 }

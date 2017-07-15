@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:2:1-34:12
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:2:1-64:12
 	package
 		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:3:5-35
 		INJECTED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml
@@ -13,16 +13,44 @@ ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:2:1
 	android:versionCode
 		INJECTED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml
 		INJECTED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:6:5-81
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:6:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:8:22-76
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:10:5-76
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:10:22-73
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:14:5-76
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:14:22-73
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:16:5-75
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:16:22-72
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:5:5-81
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:18:5-81
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:5:22-78
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:18:22-78
 uses-permission#android.permission.INTERNET
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:6:5-67
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:20:5-67
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:6:22-64
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:20:22-64
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:22:5-84
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:22:22-81
 application
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:8:5-32:19
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:24:5-62:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Administrator\.android\build-cache\1fa5e64b5ee0e8acf204eeb5abd23aa67e162e82\output\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:design:25.3.1] C:\Users\Administrator\.android\build-cache\9ea774c998f2b552de6a9ee68227ba733df086ed\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:transition:25.3.1] C:\Users\Administrator\.android\build-cache\80a9458a4bc9d4b3a20d793d29accbd4fbe314b4\output\AndroidManifest.xml:26:5-20
@@ -38,53 +66,79 @@ MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Admin
 MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Administrator\.android\build-cache\15e12705dd165b26b5fa5e7c3e4ab215ca0a8695\output\AndroidManifest.xml:26:5-20
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Administrator\.android\build-cache\8654646dd89f1b35bce69864f57dfdad645b4f2e\output\AndroidManifest.xml:29:5-20
 	android:label
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:12:9-41
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:28:9-41
 	android:supportsRtl
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:14:9-35
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:30:9-35
 	android:roundIcon
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:13:9-45
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:29:9-45
 	android:allowBackup
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:26:9-35
 	android:icon
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:27:9-40
 	android:theme
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:15:9-40
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:31:9-40
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:9:9-53
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:25:9-53
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:32:9-34:64
+	android:value
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:34:13-61
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:33:13-52
 activity#kingsley.www.runsong.activity.SplashActivity
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:16:9-22:20
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:36:9-42:20
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:16:19-58
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:36:19-58
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:17:13-21:29
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:37:13-41:29
 action#android.intent.action.MAIN
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:18:17-69
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:38:17-69
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:18:25-66
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:38:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:20:17-77
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:40:17-77
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:20:27-74
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:40:27-74
 activity#kingsley.www.runsong.activity.MainActivity
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:23:9-59
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:43:9-59
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:23:19-56
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:43:19-56
 service#kingsley.www.runsong.service.PlayService
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:25:9-28:39
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:45:9-48:39
 	android:enabled
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:27:13-35
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:47:13-35
 	android:exported
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:28:13-36
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:48:13-36
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:26:13-48
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:46:13-48
+service#com.baidu.location.f
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:49:9-52:41
+	android:enabled
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:51:13-35
+	android:process
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:52:13-38
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:50:13-48
 activity#kingsley.www.runsong.activity.PlayMusicActivity
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:30:9-64
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:54:9-64
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:30:19-61
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:54:19-61
+activity#kingsley.www.runsong.activity.PlayActivity
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:55:9-59
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:55:19-56
 activity#kingsley.www.runsong.activity.OnlineMusicActivity
-ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:31:9-75
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:56:9-66
 	android:name
-		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:31:19-63
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:56:19-63
+receiver#kingsley.www.runsong.DownLoadReceiver
+ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:58:9-61:38
+	android:enabled
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:60:13-35
+	android:exported
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:61:13-36
+	android:name
+		ADDED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml:59:13-45
 uses-sdk
 INJECTED from D:\AndroidStudioProjects\RunSong\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.jakewharton:butterknife:8.6.0] C:\Users\Administrator\.android\build-cache\f59076872cf6255752033fda0cf76389621a1985\output\AndroidManifest.xml:5:5-43
@@ -105,6 +159,7 @@ MERGED from [com.android.support:support-core-utils:25.3.1] C:\Users\Administrat
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\Administrator\.android\build-cache\ed79123c84b2fc47548dffac86c7aca50fb17762\output\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-vector-drawable:25.3.1] C:\Users\Administrator\.android\build-cache\15e12705dd165b26b5fa5e7c3e4ab215ca0a8695\output\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-compat:25.3.1] C:\Users\Administrator\.android\build-cache\8654646dd89f1b35bce69864f57dfdad645b4f2e\output\AndroidManifest.xml:21:5-23:58
+MERGED from [pl.droidsonroids.gif:android-gif-drawable:1.2.7] C:\Users\Administrator\.android\build-cache\007ba05f05f3c66d8fe2bfab90ba6500e27ba032\output\AndroidManifest.xml:7:5-9:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:design:25.3.1] C:\Users\Administrator\.android\build-cache\9ea774c998f2b552de6a9ee68227ba733df086ed\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion

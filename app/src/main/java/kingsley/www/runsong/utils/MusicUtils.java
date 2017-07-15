@@ -1,15 +1,27 @@
 package kingsley.www.runsong.utils;
 
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
+import android.webkit.MimeTypeMap;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.List;
 
+import kingsley.www.runsong.DownLoadReceiver;
+import kingsley.www.runsong.Http.HttpCallBack;
+import kingsley.www.runsong.Http.HttpClient;
 import kingsley.www.runsong.R;
+import kingsley.www.runsong.cache.AppCache;
+import kingsley.www.runsong.entity.DownloadInfo;
 import kingsley.www.runsong.entity.Music;
+import kingsley.www.runsong.entity.OnLineMusic;
 
 /**
  * class name : RanSong
@@ -77,5 +89,81 @@ public class MusicUtils {
             cursor.close();
         }
         return path;
+    }
+
+    public static void downloadMusic(final Context context, OnLineMusic onLineMusic) {
+        final String artist = onLineMusic.getArtist_name();
+        final String title = onLineMusic.getTitle();
+        // 获取歌曲下载链接
+        HttpClient.getDownloadMusicInfo(onLineMusic.getSong_id(), new HttpCallBack<DownloadInfo>() {
+            @Override
+            public void onSuccess(DownloadInfo response) {
+                Log.d("TAG", "onSuccess: response="+response);
+                downloadMusic(context,response.getBitrate().getFile_link(), artist, title);
+            }
+        });
+        //下载歌词
+        String lrcFileName = FileUtil.getLrcFileName(artist, title);
+        File lrcFile = new File(FileUtil.getLrcDir() + lrcFileName);
+        if (!TextUtils.isEmpty(onLineMusic.getLrclink()) && !lrcFile.exists()){
+            downloadMusicLrc(onLineMusic.getLrclink(),lrcFileName);
+        }
+        //下载封面
+        String albumFileName = FileUtil.getAlbumFileName(artist, title);
+        File albumFile = new File(FileUtil.getAlbumDir(),albumFileName);
+        String picUrl = onLineMusic.getPic_big();
+        if (TextUtils.isEmpty(picUrl)) {
+            picUrl = onLineMusic.getPic_small();
+        }
+
+        if (!albumFile.exists() && !TextUtils.isEmpty(picUrl)) {
+            downloadMusicAlbum(picUrl,albumFileName);
+        }
+    }
+
+    private static void downloadMusicAlbum(String picUrl, String albumFileName) {
+        HttpClient.downloadFile(picUrl, FileUtil.getAlbumDir(), albumFileName, new HttpCallBack<File>() {
+            @Override
+            public void onSuccess(File file) {
+                Log.d("TAG", "downloadMusicAlbum onSuccess: file= "+file);
+            }
+        });
+    }
+
+    private static void downloadMusicLrc(String lrcUrl, String lrcFileName) {
+        HttpClient.downloadFile(lrcUrl, FileUtil.getLrcDir(), lrcFileName, new HttpCallBack<File>() {
+            @Override
+            public void onSuccess(File file) {
+                Log.d("TAG", "downloadMusicLrc onSuccess: file= "+file);
+            }
+        });
+    }
+
+    private static void downloadMusic(Context context, String url, String artist, String title) {
+        try {
+            String fileName = FileUtil.getMp3FileName(artist, title);
+            Uri uri = Uri.parse(url);
+            DownloadManager.Request request = new DownloadManager.Request(uri);
+            request.setAllowedOverRoaming(false);// 不允许漫游
+            //在通知栏中显示，默认就是显示的
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE);
+            request.setTitle(FileUtil.getFileName(artist, title));
+            request.setDescription("正在下载…");
+            //设置下载的路径
+            request.setDestinationInExternalPublicDir(FileUtil.getRelativeMusicDir(), fileName);
+            request.setMimeType(MimeTypeMap.getFileExtensionFromUrl(url));
+            request.allowScanningByMediaScanner();
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+
+            DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+            long id = downloadManager.enqueue(request);
+            AppCache.getmDownloadList().put(id, title);
+            //注册广播接收者，监听下载状态
+            context.registerReceiver(new DownLoadReceiver(),
+                    new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        } catch (Throwable th) {
+            th.printStackTrace();
+            Toast.makeText(context, "下载失败...", Toast.LENGTH_SHORT).show();
+        }
     }
 }

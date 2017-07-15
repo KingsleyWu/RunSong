@@ -28,4 +28,5 @@ public interface IConstant {
     int PLAY_MODE_LOOP = 0;
     int PLAY_MODE_SINGLE_LOOP = 1;
     int PLAY_MODE_RANDOM = 2;
+    boolean DEBUG = true;
 }

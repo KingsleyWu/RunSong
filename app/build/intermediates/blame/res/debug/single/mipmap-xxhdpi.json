@@ -10,5 +10,13 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\online_music_list_profile_headline.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-xxhdpi\\online_music_list_profile_headline.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\play_page_disc.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-xxhdpi\\play_page_disc.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\play_page_needle.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-xxhdpi\\play_page_needle.png"
     }
 ]

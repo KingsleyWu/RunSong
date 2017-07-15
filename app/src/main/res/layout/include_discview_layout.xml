@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    >
-    <FrameLayout
-        android:id="@+id/frameLayout_Disk"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        >
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clipChildren="false"
+    android:id="@+id/play_music_frameLayout"
+    android:gravity="center_horizontal">
         <ImageView
-            android:src="@mipmap/disc"
-            android:contentDescription="@null"
-            android:id="@+id/imageView_Disk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-        <kingsley.www.ransong.view.CircleImageView
-            android:id="@+id/imageView_Disk_Header"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
-            />
-        <TextView
-            android:id="@+id/textView_Lrc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="200dp"
-            android:text="lrc显示在这里" />
-    </FrameLayout>
-    <ImageView
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:contentDescription="@null"
-        android:id="@+id/imageView_Disk_Pin"
-        android:src="@mipmap/pin"
-        android:layout_alignParentTop="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+            android:id="@+id/play_music_songBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription" />
+        <kingsley.www.runsong.view.BlurringView
+            android:id="@+id/playMusicBlurringView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:blurRadius="11"
+            app:downSampleFactor="6"
+            app:overlayColor="#50FFFFFF"/>
+        <RelativeLayout
+            android:id="@+id/play_music_rotaView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/play_music_iv_disc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@null"
+                android:src="@mipmap/disc"
+                tools:ignore="ContentDescription" />
+            <kingsley.www.runsong.view.CircleImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/play_music_iv_songImage"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="@mipmap/ic_launcher_round"
+                />
+        </RelativeLayout>
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/play_music_iv_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/play_page_needle"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="-25dp"
+            tools:ignore="ContentDescription" />
+
+</FrameLayout>

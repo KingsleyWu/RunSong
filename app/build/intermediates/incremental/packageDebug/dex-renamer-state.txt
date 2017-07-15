@@ -1,4 +1,4 @@
-#Sat Jul 08 15:54:32 CST 2017
+#Sat Jul 15 20:22:18 CST 2017
 base.0=D\:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_64041337f4de886349fef80a97df603501b9b9e6
 renamed.1=classes.dex
 renamed.0=classes2.dex

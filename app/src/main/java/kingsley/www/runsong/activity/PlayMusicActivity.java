@@ -28,6 +28,7 @@ import kingsley.www.runsong.m_interface.IConstant;
 import kingsley.www.runsong.m_interface.OnPlayerEventListener;
 import kingsley.www.runsong.service.PlayService;
 import kingsley.www.runsong.utils.CoverLoader;
+import kingsley.www.runsong.utils.FileUtil;
 import kingsley.www.runsong.utils.FormatDateUtil;
 import kingsley.www.runsong.utils.Preferences;
 import kingsley.www.runsong.view.BlurringView;
@@ -64,17 +65,6 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
     private boolean isInitView;
     private int playMode;
     private long songDuration;
-    //处理当前播放时间的设置
-//    private Handler handler = new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            String date;
-//            if ((date = (String) msg.obj) != null){
-//                setCurrentTimeView(date);
-//            }
-//        }
-//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,7 +165,7 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
             isInitView = false;
         }
         Music music = mMusicList.get(position);
-        String path = music.getCoverPath();
+        String path = FileUtil.getAlbumFilePath(music);
         Bitmap songImage;
         if (path == null) {
             songImage = BitmapFactory.decodeResource(getResources(), R.mipmap.i_love_my_music);
@@ -339,6 +329,11 @@ public class PlayMusicActivity extends BaseActivity implements View.OnClickListe
         mPlayMusicSeekBar.setProgress(mProgress);
         final String date = FormatDateUtil.formatTime("mm:ss", progress);
         setCurrentTimeView(date);
+    }
+
+    @Override
+    public void onPlayerCompletionPlay() {
+
     }
 
     //设置当前播放的时间进度

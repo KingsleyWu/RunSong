@@ -4,12 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
-import java.util.List;
-
+import kingsley.www.runsong.activity.BaseActivity;
 import kingsley.www.runsong.cache.AppCache;
-import kingsley.www.runsong.entity.Music;
 import kingsley.www.runsong.service.PlayService;
-import kingsley.www.runsong.cache.CacheMusic;
 
 /**
  * class name : RunSong
@@ -20,8 +17,8 @@ import kingsley.www.runsong.cache.CacheMusic;
  */
 
 public abstract class BaseFragment extends Fragment {
-    protected List<Music> mMusicList = CacheMusic.getInstance().getMusicList();
     private static final String TAG = "BaseFragment";
+    protected BaseActivity baseActivity;
     protected PlayService getPlayService() {
         PlayService playService = AppCache.getPlayService();
         if (playService == null) {
@@ -33,6 +30,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        baseActivity = (BaseActivity)getActivity();
         init();
     }
 

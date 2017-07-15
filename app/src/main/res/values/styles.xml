@@ -21,4 +21,12 @@
         <attr name="downSampleFactor" format="integer"/>
         <attr name="overlayColor" format="color"/>
     </declare-styleable>
+
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTextAppearance</item>
+    </style>
+
+    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>

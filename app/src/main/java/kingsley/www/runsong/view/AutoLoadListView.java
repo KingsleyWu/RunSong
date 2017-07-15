@@ -2,9 +2,12 @@ package kingsley.www.runsong.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import kingsley.www.runsong.R;
 
 /**
  * class name : RunSong
@@ -23,14 +26,24 @@ public class AutoLoadListView extends ListView implements AbsListView.OnScrollLi
 
     public AutoLoadListView(Context context) {
         super(context);
+        initFooterView();
     }
 
     public AutoLoadListView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initFooterView();
     }
 
     public AutoLoadListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initFooterView();
+    }
+
+    private void initFooterView() {
+        vFooter = LayoutInflater.from(getContext()).inflate(R.layout.auto_load_list_view_footer, null);
+        addFooterView(vFooter, null, false);
+        setOnScrollListener(this);
+        onLoadComplete();
     }
 
     @Override
@@ -48,6 +61,10 @@ public class AutoLoadListView extends ListView implements AbsListView.OnScrollLi
                 onLoad();
             }
         }
+        mFirstVisibleItem = firstVisibleItem;
+    }
+    public void setEnable(boolean enable) {
+        mEnableLoad = enable;
     }
 
     private void onLoad(){
@@ -56,6 +73,10 @@ public class AutoLoadListView extends ListView implements AbsListView.OnScrollLi
         if (mListener != null){
             mListener.onLoad();
         }
+    }
+    public void onLoadComplete() {
+        mIsLoading = false;
+        removeFooterView(vFooter);
     }
     public void setOnLoadListener(OnLoadListener listener) {
         mListener = listener;

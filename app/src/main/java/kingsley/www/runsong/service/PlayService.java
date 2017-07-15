@@ -1,6 +1,7 @@
 package kingsley.www.runsong.service;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
@@ -10,10 +11,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import kingsley.www.runsong.application.MusicApplication;
 import kingsley.www.runsong.cache.CacheMusic;
 import kingsley.www.runsong.entity.Music;
 import kingsley.www.runsong.m_interface.IConstant;
@@ -31,9 +36,10 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
     // 正在播放的歌曲[本地|网络]
     private Music mPlayingMusic;
     // 正在播放的本地歌曲的序号
-    private int mPlayingPosition;
-    private long mPlayingCurrentPosition;
+    public int mPlayingPosition;
+    public long mPlayingCurrentPosition;
     private OnPlayerEventListener onPlayerEventListener;
+    public boolean isPrepare;
 
     public PlayService() {
     }
@@ -60,11 +66,11 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                 if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null && mPlayer != null && isPlaying()) {
                     onPlayerEventListener.setSeekBar(mPlayer.getCurrentPosition());
                 }
-                handler.postDelayed(this,1000);
+                handler.postDelayed(this, 1000);
             }
         }, 1000);
 
-        if (mPlayer == null) mPlayer = new MediaPlayer();
+        if (mPlayer == null) mPlayer = getMediaPlayer(MusicApplication.instance);
         //设置异步加载监听
         mPlayer.setOnPreparedListener(this);
         //设置一首歌播放完毕后的监听
@@ -80,24 +86,6 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        /*if (intent != null && intent.getAction() != null) {
-            Log.i(TAG, "onStartCommand: "+intent.getClass());
-            mNextPlayPosition = intent.getIntExtra(POSITION,mPlayingPosition);
-            Log.i(TAG, "onStartCommand: mNextPlayPosition="+mNextPlayPosition);
-            switch (intent.getAction()) {
-                case PLAY:
-                    Log.i(TAG, "onStartCommand: PLAY");
-                    flag = false;
-                    playPause();
-                    break;
-                case NEXT:
-                    next();
-                    break;
-                case PREV:
-                    prev();
-                    break;
-            }
-        }*/
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -112,21 +100,25 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         } else if (mNextPlayPosition >= mMusicList.size()) {
             mNextPlayPosition = 0;
         }
+
         if (mPlayingPosition == mNextPlayPosition) {
             //Log.i(TAG, "playPause: mPlayingPosition="+mPlayingPosition);
             if (mPlayer.isPlaying()) {
                 //Log.i(TAG, "playPause: mPlayer.pause()");
+                isPrepare = false;
                 pause();
             } else {
+                isPrepare = true;
                 play(mPlayingPosition);
-                Log.i(TAG, "play: mPlayingPosition="+mPlayingPosition);
+                Log.i(TAG, "play: mPlayingPosition=" + mPlayingPosition);
             }
         } else {
+            isPrepare = true;
             mPlayingPosition = mNextPlayPosition;
-            Log.i(TAG, "playPause: mPlayingPosition="+mPlayingPosition);
+            Log.i(TAG, "playPause: mPlayingPosition=" + mPlayingPosition);
             play(mPlayingPosition);
         }
-        updateView(mNextPlayPosition);
+        updateView(mPlayingPosition);
     }
 
     //歌曲变更需更新View的回调方法
@@ -135,7 +127,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         if ((musicChange = CacheMusic.isMusicChange) != null)
             //播放位置变化
             musicChange.isMusicChange(mNextPlayPosition);
-        if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null) {
+        if ((onPlayerEventListener = CacheMusic.onPlayerEventListener) != null && isPrepare) {
             onPlayerEventListener.setView(mNextPlayPosition);
         }
     }
@@ -158,6 +150,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         if (music.equals(mPlayingMusic)) {
             mPlayer.seekTo((int) mPlayingCurrentPosition);
             mPlayer.start();
+            Log.d(TAG, "play: dasfasdfas");
         } else {
             //当前播放的音乐
             mPlayingMusic = music;
@@ -184,6 +177,12 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         mPlayer.pause();
         Log.i(TAG, "mPlayer.pause();");
         mPlayingCurrentPosition = mPlayer.getCurrentPosition();
+        if (onPlayerEventListener != null)
+            onPlayerEventListener.onPlayerCompletionPlay();
+    }
+
+    public long getCurrentPosition() {
+        return mPlayer.getCurrentPosition();
     }
 
     //服务停止时调用,用于释放资源
@@ -197,8 +196,12 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     //更改播放进度
     public void seekTo(int progress) {
-        progress = mPlayer.getDuration() * progress / 100;
-        mPlayer.seekTo(progress);
+        Log.d(TAG, "seekTo: progress=" + progress);
+        if (mPlayer.isPlaying()) {
+            progress = mPlayer.getDuration() * progress / 100;
+            mPlayer.seekTo(progress);
+            isPrepare = true;
+        }
     }
 
     //当歌曲歌曲播放完成时,执行此方法
@@ -206,10 +209,10 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
     public void onCompletion(MediaPlayer mp) {
         switch (Preferences.getPlayMode()) {
             case IConstant.PLAY_MODE_LOOP:
-                Log.i(TAG, "onCompletion: ="+mPlayingPosition);
-                int lastPlayPosition = mPlayingPosition+1;
+                Log.i(TAG, "onCompletion: =" + mPlayingPosition);
+                int lastPlayPosition = mPlayingPosition + 1;
                 playPause(lastPlayPosition);
-                Log.i(TAG, "onPrepared: PLAY_MODE_LOOP"+mPlayingPosition);
+                Log.i(TAG, "onPrepared: PLAY_MODE_LOOP" + mPlayingPosition);
                 break;
             case IConstant.PLAY_MODE_SINGLE_LOOP:
                 playPause(mPlayingPosition);
@@ -232,7 +235,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.i(TAG, "onError: what="+what);
+        Log.i(TAG, "onError: what=" + what);
         return true;
     }
 
@@ -246,7 +249,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         return mPlayer.isPlaying();
     }
 
-    public long getDuration(){
+    public long getDuration() {
         return mPlayer.getDuration();
     }
 
@@ -255,4 +258,46 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         stop();
     }
 
+    private MediaPlayer getMediaPlayer(Context context) {
+        MediaPlayer mediaplayer = new MediaPlayer();
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.KITKAT) {
+            return mediaplayer;
+        }
+        try {
+            Class<?> cMediaTimeProvider = Class.forName("android.media.MediaTimeProvider");
+            Class<?> cSubtitleController = Class.forName("android.media.SubtitleController");
+            Class<?> iSubtitleControllerAnchor = Class.forName("android.media.SubtitleController$Anchor");
+            Class<?> iSubtitleControllerListener = Class.forName("android.media.SubtitleController$Listener");
+            Constructor constructor = cSubtitleController.getConstructor(
+                    new Class[]{Context.class, cMediaTimeProvider, iSubtitleControllerListener});
+            Object subtitleInstance = constructor.newInstance(context, null, null);
+            Field f = cSubtitleController.getDeclaredField("mHandler");
+            f.setAccessible(true);
+            try {
+                f.set(subtitleInstance, new Handler());
+            } catch (IllegalAccessException e) {
+                return mediaplayer;
+            } finally {
+                f.setAccessible(false);
+            }
+            Method setSubtitleAnchor = mediaplayer.getClass().getMethod("setSubtitleAnchor",
+                    cSubtitleController, iSubtitleControllerAnchor);
+            setSubtitleAnchor.invoke(mediaplayer, subtitleInstance, null);
+        } catch (Exception e) {
+            Log.d(TAG, "getMediaPlayer crash ,exception = " + e);
+        }
+        return mediaplayer;
+    }
+
+    private int getmPlayingPosition() {
+        int position = 0;
+        long id = Preferences.getCurrentSongId();
+        for (int i = 0; i < mMusicList.size(); i++) {
+            if (mMusicList.get(i).getId() == id) {
+                position = i;
+                break;
+            }
+        }
+        return position;
+    }
 }

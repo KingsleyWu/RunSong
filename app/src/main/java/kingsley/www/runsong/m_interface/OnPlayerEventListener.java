@@ -11,4 +11,5 @@ package kingsley.www.runsong.m_interface;
 public interface OnPlayerEventListener{
         void setView(int position);
         void setSeekBar(int progress);
+        void onPlayerCompletionPlay();
 }
