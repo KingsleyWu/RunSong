@@ -2,6 +2,7 @@ package kingsley.www.runsong.application;
 
 import android.app.Application;
 
+import com.mob.MobSDK;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -24,9 +25,11 @@ public class MusicApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+        MobSDK.init(this, "1fe9e4f8dc55f", "bf5889c045df9df4cdb446a4fee7fa7f");
         initOkHttpUtils();
         initSharePreferences();
     }
+
     private void initOkHttpUtils() {
         //初始化OkHttpClient,并设置请求属性
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

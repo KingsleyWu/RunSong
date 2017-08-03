@@ -1,16 +1,19 @@
 package kingsley.www.runsong.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +37,16 @@ public class MusicNetFragment extends BaseFragment implements NetMusicListAdapte
     LinearLayout mNetMusicLoadFail;
     private List<SongListInfo> mSongLists;
 
-    public MusicNetFragment() {}
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.i(TAG, "onAttach: ");
+        checkList();
+    }
+
+    public MusicNetFragment() {
+        mSongLists = new ArrayList<>();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +60,7 @@ public class MusicNetFragment extends BaseFragment implements NetMusicListAdapte
         View view = inflater.inflate(R.layout.fragment_music_net, container, false);
         ButterKnife.bind(this,view);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        Log.d(TAG, "onCreateView: ");
         mNetMusicRecyclerView.setLayoutManager(layoutManager);
         NetMusicListAdapter adapter = new NetMusicListAdapter(getContext(), mSongLists);
         mNetMusicRecyclerView.setAdapter(adapter);
@@ -55,8 +68,7 @@ public class MusicNetFragment extends BaseFragment implements NetMusicListAdapte
         return view;
     }
 
-    @Override
-    protected void init() {
+    private void checkList(){
         mSongLists = AppCache.getSongListInfos();
         if (mSongLists.isEmpty()) {
             String[] titles = getResources().getStringArray(R.array.online_music_list_title);

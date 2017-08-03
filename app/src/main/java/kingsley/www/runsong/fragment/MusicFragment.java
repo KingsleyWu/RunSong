@@ -65,11 +65,6 @@ public class MusicFragment extends BaseFragment {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
     }
 
-    @Override
-    protected void init() {
-
-    }
-
     private class MusicFrgAdapter extends FragmentPagerAdapter{
         private static final String TAG = "MusicFrgAdapter";
         private Fragment musicLocalFragment;

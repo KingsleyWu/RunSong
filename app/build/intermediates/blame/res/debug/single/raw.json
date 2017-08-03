@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\raw\\smssdk_pydb",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\811fe2a007996247b288cc58440444d696bd43ba\\output\\res\\raw\\smssdk_pydb"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\raw\\kr36.mp4",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\raw\\kr36.mp4"
     }

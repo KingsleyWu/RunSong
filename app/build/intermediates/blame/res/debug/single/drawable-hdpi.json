@@ -8,16 +8,16 @@
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\toolbar_run_selected.png"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\netpng.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\netpng.png"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_loading2.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\ic_loading2.png"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\music.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\music.png"
-    },
-    {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\netpng.png",
-        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-hdpi\\netpng.png"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\za.png",

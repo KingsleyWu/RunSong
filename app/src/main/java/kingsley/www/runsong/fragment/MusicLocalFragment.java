@@ -61,12 +61,9 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
 
     public MusicLocalFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    protected void init() {
         mPlayService = getPlayService();
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

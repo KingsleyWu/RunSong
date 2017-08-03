@@ -57,7 +57,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="歌手 - 专辑"
-                    android:textColor="@color/gray"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp" />
             </LinearLayout>
 
