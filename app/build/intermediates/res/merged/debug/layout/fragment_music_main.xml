@@ -17,9 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             style="@style/MyCustomTabLayout"
-            android:background="@color/titleRed"
-            app:tabSelectedTextColor="#FFFFFFFF"
-            app:tabIndicatorColor="#FFFFFFFF">
+            app:tabMinWidth="200dp"
+            android:background="@android:color/transparent"
+            app:tabSelectedTextColor="@color/titleRed"
+            app:tabIndicatorColor="@color/titleRed">
         </android.support.design.widget.TabLayout>
     </android.support.v4.view.ViewPager>
 

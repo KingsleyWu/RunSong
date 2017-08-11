@@ -22,7 +22,7 @@ public class MyLocationListener implements BDLocationListener {
     public void onReceiveLocation(BDLocation location) {
 
         //获取定位结果
-        StringBuffer sb = new StringBuffer(256);
+        StringBuilder sb = new StringBuilder(256);
 
         sb.append("time : ");
         sb.append(location.getTime());    //获取定位时间
@@ -104,7 +104,11 @@ public class MyLocationListener implements BDLocationListener {
             sb.append(list.size());
             for (Poi p : list) {
                 sb.append("\npoi= : ");
-                sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
+                sb.append(p.getId())
+                        .append(" ")
+                        .append(p.getName())
+                        .append(" ")
+                        .append(p.getRank());
             }
         }
 

@@ -21,10 +21,13 @@ import android.widget.RadioGroup;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.adapter.SplashPagerAdapter;
 import kingsley.www.runsong.cache.AppCache;
 import kingsley.www.runsong.service.PlayService;
+import kingsley.www.runsong.utils.Preferences;
 import kingsley.www.runsong.view.MyVideoView;
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
@@ -33,17 +36,20 @@ import okhttp3.Response;
 
 public class SplashActivity extends BaseActivity implements ViewPager.OnPageChangeListener, ServiceConnection, View.OnClickListener {
 
-    private Button mBtnStartActivity;
+
+    public Button mBtnStartActivity;
     private ViewPager mViewpager;
-    private MyVideoView mVideoView;
-    private Button mBtnLogin;
+    @BindView(R.id.videoView)
+    public MyVideoView mVideoView;
+    @BindView(R.id.btn_login)
+    public Button mBtnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.splash_layout);
+        ButterKnife.bind(this);
         //设置视频播放
-        mVideoView = (MyVideoView) findViewById(R.id.videoView);
         mVideoView.setVideoURI(Uri.parse("android.resource://"+this.getPackageName()+"/"+R.raw.kr36));
         mVideoView.start();
         //设置视频播放完成后的监听
@@ -53,22 +59,31 @@ public class SplashActivity extends BaseActivity implements ViewPager.OnPageChan
                 mVideoView.start();
             }
         });
-        mBtnLogin = (Button) findViewById(R.id.btn_login);
         mBtnLogin.setOnClickListener(this);
         //setContentView(R.layout.activity_splash);
         //初始化控件及为ViePager设置adapter
         //initView();
         //为button设置监听事件
         //setListener();
-        bindService(new Intent(getApplicationContext(), PlayService.class),this, Context.BIND_AUTO_CREATE);
-/*        new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                oKHttpTest();
+                //oKHttpTest();
+                bindService(new Intent(getApplicationContext(), PlayService.class),SplashActivity.this, Context.BIND_AUTO_CREATE);
             }
-        }).start();*/
+        }).start();
 
+        if (!Preferences.getIsFirst()) {
+            mBtnLogin.setVisibility(View.GONE);
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startMainActivity();
+                }
+            }, 2000);
+        }
     }
+
     private void oKHttpTest(){
         String url = "https://www.baidu.com/";
         OkHttpClient client = new OkHttpClient();
@@ -167,6 +182,7 @@ public class SplashActivity extends BaseActivity implements ViewPager.OnPageChan
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
+        Preferences.setIsFirst(false);
         finish();
     }
 }

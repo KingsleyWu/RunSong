@@ -1,6 +1,5 @@
 package kingsley.www.runsong.utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -19,15 +18,13 @@ public class Preferences {
     private static final String MUSIC_ID = "music_id";
     private static final String PLAY_MODE = "play_mode";
     private static final String CURRENT_PLAY_POSITION = "current_play_position";
-    @SuppressLint("StaticFieldLeak")
-    private static Context mContext;
+    private static final Boolean IS_FIRST = true;
+    private static SharedPreferences sharedPreferences;
 
-    public static void init(Context context){
-        mContext = context.getApplicationContext();
-    }
     //初始化SharePreferences
-    private static SharedPreferences getPreferences(){
-        return PreferenceManager.getDefaultSharedPreferences(mContext);
+    public static void init(Context context){
+        sharedPreferences = PreferenceManager
+                .getDefaultSharedPreferences(context.getApplicationContext());
     }
     //从偏好设置中取出播放的songId
     public static long getCurrentSongId() {
@@ -54,34 +51,42 @@ public class Preferences {
     }
 
     private static long getLong(String key, long defValue) {
-        return getPreferences().getLong(key, defValue);
+        return sharedPreferences.getLong(key, defValue);
     }
 
     private static void saveLong(String key, long value) {
-        getPreferences().edit().putLong(key, value).apply();
+        sharedPreferences.edit().putLong(key, value).apply();
     }
 
     private static int getInt(String key, int defValue) {
-        return getPreferences().getInt(key, defValue);
+        return sharedPreferences.getInt(key, defValue);
     }
 
     private static void saveInt(String key, int value) {
-        getPreferences().edit().putInt(key, value).apply();
+        sharedPreferences.edit().putInt(key, value).apply();
     }
 
     public static String getString(String key, String defValue) {
-        return getPreferences().getString(key, defValue);
+        return sharedPreferences.getString(key, defValue);
     }
 
     public static void saveString(String key, String value) {
-        getPreferences().edit().putString(key, value).apply();
+        sharedPreferences.edit().putString(key, value).apply();
     }
 
     public static boolean getBoolean(String key, boolean defValue) {
-        return getPreferences().getBoolean(key, defValue);
+        return sharedPreferences.getBoolean(key, defValue);
     }
 
     public static void saveBoolean(String key, boolean value) {
-        getPreferences().edit().putBoolean(key, value).apply();
+        sharedPreferences.edit().putBoolean(key, value).apply();
+    }
+
+    public static Boolean getIsFirst() {
+        return getBoolean("isFirst", IS_FIRST);
+    }
+
+    public static void setIsFirst(boolean value){
+        saveBoolean("isFirst",value);
     }
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">跑歌</string>
+    <string name="app_name">RunSong</string>
     <string name="splash1">splash1</string>
     <string name="splash_btn">进入--＞</string>
     <string name="hint">搜索音乐 歌词 电台</string>
@@ -16,4 +16,5 @@
     <string name="song_list_item_title_1">1.%1$s - %2$s</string>
     <string name="song_list_item_title_2">2.%1$s - %2$s</string>
     <string name="song_list_item_title_3">3.%1$s - %2$s</string>
+    <string name="jump">跳过</string>
 </resources>

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.activity.OnlineMusicActivity;
 import kingsley.www.runsong.adapter.NetMusicListAdapter;
@@ -49,23 +48,18 @@ public class MusicNetFragment extends BaseFragment implements NetMusicListAdapte
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                oKHttpTest();
-            }
-        }).start();*/
-        View view = inflater.inflate(R.layout.fragment_music_net, container, false);
-        ButterKnife.bind(this,view);
+    public View createMyView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_music_net, container, false);
+    }
+
+    @Override
+    public void doBusiness() {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         Log.d(TAG, "onCreateView: ");
         mNetMusicRecyclerView.setLayoutManager(layoutManager);
         NetMusicListAdapter adapter = new NetMusicListAdapter(getContext(), mSongLists);
         mNetMusicRecyclerView.setAdapter(adapter);
         adapter.setItemClickListener(this);
-        return view;
     }
 
     private void checkList(){

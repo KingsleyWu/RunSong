@@ -26,7 +26,7 @@ public class DownLoadReceiver extends BroadcastReceiver {
                 MusicUtils.scanMusic(context, CacheMusic.getInstance().getMusicList());
                 context.unregisterReceiver(DownLoadReceiver.this);
             }
-        },1000);
+        },2000);
     }
 
     //检查下载状态
@@ -54,6 +54,7 @@ public class DownLoadReceiver extends BroadcastReceiver {
                 //下载完成
                 case DownloadManager.STATUS_SUCCESSFUL:
                     Toast.makeText(context, AppCache.getmDownloadList().get(downId)+"下载完成", Toast.LENGTH_SHORT).show();
+
                     break;
                 //下载失败
                 case DownloadManager.STATUS_FAILED:

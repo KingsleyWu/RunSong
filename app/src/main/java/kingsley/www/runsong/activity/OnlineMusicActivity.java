@@ -2,6 +2,7 @@ package kingsley.www.runsong.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,43 +12,52 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import kingsley.www.runsong.Http.HttpCallBack;
 import kingsley.www.runsong.Http.HttpClient;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.adapter.OnLineMusicAdapter;
 import kingsley.www.runsong.cache.AppCache;
+import kingsley.www.runsong.cache.CacheMusic;
 import kingsley.www.runsong.entity.DownloadInfo;
 import kingsley.www.runsong.entity.Music;
 import kingsley.www.runsong.entity.OnLineMusic;
 import kingsley.www.runsong.entity.OnLineMusicList;
 import kingsley.www.runsong.entity.SongListInfo;
 import kingsley.www.runsong.service.PlayService;
+import kingsley.www.runsong.utils.FileUtil;
+import kingsley.www.runsong.utils.MusicUtils;
 import kingsley.www.runsong.view.AutoLoadListView;
 
 public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnItemClickListener, AutoLoadListView.OnLoadListener {
 
-    private Toolbar mToolbar;
-    private AutoLoadListView mOnlineLv;
+    @BindView(R.id.online_toolbar)
+    public Toolbar mToolbar;
+    @BindView(R.id.online_lv)
+    public AutoLoadListView mOnlineLv;
+    public ImageView mIvHeaderBg;
+    public ImageView mIvCover;
+    public TextView mTvTitle;
+    public TextView mTvUpdateDate;
+    public TextView mTvComment;
+    public View headerView;
     private SongListInfo songListInfo;
     private List<OnLineMusic> data;
     private int musicListSize = 20;
     private OnLineMusicList onLineMusicLists;
     private OnLineMusicAdapter adapter;
     private PlayService playService;
-    private ImageView mIvHeaderBg;
-    private ImageView mIvCover;
-    private TextView mTvTitle;
-    private TextView mTvUpdateDate;
-    private TextView mTvComment;
-    private View headerView;
     private int mOffset = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_online_music);
+        ButterKnife.bind(this);
         playService = getPlayService();
         songListInfo = (SongListInfo) getIntent().getSerializableExtra("songListInfo");
         setTitle(songListInfo.getTitle());
@@ -55,7 +65,6 @@ public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnI
     }
 
     private void initView() {
-        mToolbar = (Toolbar) findViewById(R.id.online_toolbar);
         if (mToolbar == null) {
             throw new IllegalStateException("Layout is required to include a Toolbar with id 'toolbar'");
         }
@@ -63,7 +72,6 @@ public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnI
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        mOnlineLv = (AutoLoadListView) findViewById(R.id.online_lv);
         addHeaderView();
         data = new ArrayList<>();
         adapter = new OnLineMusicAdapter(this,data);
@@ -90,8 +98,15 @@ public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnI
         Glide.with(this).load(onLineMusicLists.getBillboard().getPic_s640()).into(mIvHeaderBg);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initDatas();
+    }
+
     private void initDatas(){
-        HttpClient.getSongListInfo(songListInfo.getType(), musicListSize, mOffset, new HttpCallBack<OnLineMusicList>() {
+        HttpClient.getSongListInfo(songListInfo.getType(), musicListSize, mOffset,
+                new HttpCallBack<OnLineMusicList>() {
             @Override
             public void onSuccess(OnLineMusicList onLineMusicList) {
                 mOnlineLv.onLoadComplete();
@@ -101,11 +116,6 @@ public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnI
                 adapter.addAll(onLineMusicList.getSong_list(),false);
             }
         });
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initDatas();
     }
 
     @Override
@@ -120,13 +130,25 @@ public class OnlineMusicActivity extends BaseActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         final Music music = new Music();
-        OnLineMusic onLineMusic = adapter.getItem(position-1);
+        final OnLineMusic onLineMusic = adapter.getItem(position-1);
         log(onLineMusic.getTitle());
         HttpClient.getDownloadMusicInfo(onLineMusic.getSong_id(), new HttpCallBack<DownloadInfo>() {
             @Override
             public void onSuccess(DownloadInfo response) {
                 music.setPath(response.getBitrate().getFile_link());
+                music.setType(Music.Type.ONLINE);
+                music.setAlbum(onLineMusic.getPic_big());
+                music.setArtist(onLineMusic.getArtist_name());
+                music.setCoverPath(onLineMusic.getPic_small());
+                music.setTitle(onLineMusic.getTitle());
+                //下载歌词
+                String lrcFileName = FileUtil.getLrcFileName(onLineMusic.getArtist_name(), onLineMusic.getTitle());
+                File lrcFile = new File(FileUtil.getLrcDir() + lrcFileName);
+                if (!TextUtils.isEmpty(onLineMusic.getLrclink()) && !lrcFile.exists()){
+                    MusicUtils.downloadMusicLrc(onLineMusic.getLrclink(),lrcFileName);
+                }
                 //Log.i(TAG, "onResponse: response.getBitrate().getFile_link()="+response.getBitrate().getFile_link()+"  -- id="+id);
+                CacheMusic.setOnLineMusic(music);
                 AppCache.getPlayService().play(music);
             }
         });

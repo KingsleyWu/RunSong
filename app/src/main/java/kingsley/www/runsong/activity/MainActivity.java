@@ -112,15 +112,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 finish();
                 break;
             case R.id.drawerRecentlyPlayedId:
-
+                toast("暂无内容");
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.drawerMyCollectionId:
-
+                toast("暂无内容");
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.drawerSystemSettingsId:
-
+                toast("暂无内容");
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
         }
@@ -171,8 +171,4 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         CacheMusic.isMusicChange = null;
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
 }

@@ -7,7 +7,7 @@
         android:targetSdkVersion="25" />
 
     <instrumentation
-        android:name="android.support.test.runner.AndroidJUnitRunner"
+        android:name="android.support.splash_layout.runner.AndroidJUnitRunner"
         android:functionalTest="false"
         android:handleProfiling="false"
         android:label="Tests for kingsley.www.runsong"

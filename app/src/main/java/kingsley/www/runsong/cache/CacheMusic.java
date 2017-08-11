@@ -21,6 +21,8 @@ public class CacheMusic {
 
     public static IIsMusicChange isMusicChange;
 
+    private static Music onLineMusic;
+
     public static OnPlayerEventListener onPlayerEventListener;
 
     private List<Music> mMusicList = new ArrayList<>();
@@ -44,4 +46,12 @@ public class CacheMusic {
         this.mMusicList = mMusicList;
     }
 
+
+    public static Music getOnLineMusic() {
+        return onLineMusic;
+    }
+
+    public static void setOnLineMusic(Music onLineMusic) {
+        CacheMusic.onLineMusic = onLineMusic;
+    }
 }

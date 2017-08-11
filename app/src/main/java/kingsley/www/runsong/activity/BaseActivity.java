@@ -57,7 +57,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                 getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             }
         }
-        toast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
@@ -132,7 +131,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     //关于toast和log
     public void toast(String text) {
         if (!TextUtils.isEmpty(text)) {
-            toast.setText(text);
+            toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
             toast.show();
         }
     }

@@ -104,6 +104,10 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\notification_template_media_custom.xml"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\ssdk_weibo_web_layout.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\ssdk_weibo_web_layout.xml"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
     },
@@ -248,10 +252,6 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\9ea774c998f2b552de6a9ee68227ba733df086ed\\output\\res\\layout\\design_layout_tab_text.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\test.xml",
-        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\test.xml"
-    },
-    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
@@ -334,5 +334,9 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_text_input_password_icon.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\9ea774c998f2b552de6a9ee68227ba733df086ed\\output\\res\\layout\\design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\layout\\splash_layout.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\layout\\splash_layout.xml"
     }
 ]

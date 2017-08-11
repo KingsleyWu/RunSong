@@ -9,6 +9,7 @@ package kingsley.www.runsong.entity;
  */
 
 public class OnLineMusic {
+
     private String pic_big;
     private String pic_small;
     private String lrclink;

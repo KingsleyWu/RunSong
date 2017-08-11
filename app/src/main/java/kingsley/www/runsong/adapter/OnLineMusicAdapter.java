@@ -17,6 +17,8 @@ import com.wevey.selector.dialog.NormalSelectionDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.entity.OnLineMusic;
 import kingsley.www.runsong.utils.MusicUtils;
@@ -79,23 +81,20 @@ public class OnLineMusicAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private class ViewHolder {
-        private View mOnlineItemVPlaying;
-        private ImageView mOnlineItemIvCover;
-        private TextView mOnlineItemTvTitle;
-        private TextView mOnlineItemTvArtist;
-        private ImageView mOnlineItemIvMore;
+     static class ViewHolder {
+        @BindView(R.id.online_item_v_playing)
+        public View mOnlineItemVPlaying;
+        @BindView(R.id.online_item_iv_cover)
+        public ImageView mOnlineItemIvCover;
+        @BindView(R.id.online_item_tv_title)
+        public TextView mOnlineItemTvTitle;
+        @BindView(R.id.online_item_tv_artist)
+        public TextView mOnlineItemTvArtist;
+        @BindView(R.id.online_item_iv_more)
+        public ImageView mOnlineItemIvMore;
 
-        private ViewHolder(View view) {
-            initView(view);
-        }
-
-        private void initView(View view) {
-            mOnlineItemVPlaying = view.findViewById(R.id.online_item_v_playing);
-            mOnlineItemIvCover = (ImageView) view.findViewById(R.id.online_item_iv_cover);
-            mOnlineItemTvTitle = (TextView) view.findViewById(R.id.online_item_tv_title);
-            mOnlineItemTvArtist = (TextView) view.findViewById(R.id.online_item_tv_artist);
-            mOnlineItemIvMore = (ImageView) view.findViewById(R.id.online_item_iv_more);
+        ViewHolder(View view) {
+            ButterKnife.bind(this,view);
         }
     }
 
@@ -140,7 +139,7 @@ public class OnLineMusicAdapter extends BaseAdapter {
                                 Toast.makeText(mContext, "下一首播放", Toast.LENGTH_SHORT).show();
                                 break;
                             case 1:
-                                Toast.makeText(mContext, "下一首播放", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "添加到歌单", Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
                                 Toast.makeText(mContext, "分享", Toast.LENGTH_SHORT).show();

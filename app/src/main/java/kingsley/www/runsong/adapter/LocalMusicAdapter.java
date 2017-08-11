@@ -2,7 +2,6 @@ package kingsley.www.runsong.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,6 +18,9 @@ import com.wevey.selector.dialog.NormalSelectionDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.entity.Music;
 import kingsley.www.runsong.utils.CoverLoader;
@@ -37,19 +39,21 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
 
     private NormalSelectionDialog dialog;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        private CircleImageView songImage;
-        private ImageView songMoreImage;
-        private TextView songTitle, songArtist;
-        private CardView mCardView;
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.songItem_Iv_songImage)
+        public CircleImageView songImage;
+        @BindView(R.id.songItem_Iv_More)
+        public ImageView songMoreImage;
+        @BindView(R.id.songItem_Tv_songTitle)
+        public TextView songTitle;
+        @BindView(R.id.songItem_Tv_SongArtist)
+        public TextView songArtist;
+        @BindView(R.id.songItem_cardView)
+        public CardView mCardView;
+
         ViewHolder(View itemView) {
             super(itemView);
-            songImage = (CircleImageView) itemView.findViewById(R.id.songItem_Iv_songImage);
-            songTitle = (TextView) itemView.findViewById(R.id.songItem_Tv_songTitle);
-            songArtist = (TextView) itemView.findViewById(R.id.songItem_Tv_SongArtist);
-            songMoreImage = (ImageView) itemView.findViewById(R.id.songItem_Iv_More);
-            mCardView = (CardView) itemView.findViewById(R.id.songItem_cardView);
-
+            ButterKnife.bind(this,itemView);
         }
     }
 
@@ -69,13 +73,11 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
     public interface OnItemClickListener {
         /**
          * 点击recyclerView中的item时执行此方法
-         *
          * @param parent   指向RecyclerView
          * @param view     指向ItemView
          * @param position itemView在RecyclerView中的位置
          */
         void onItemClick(RecyclerView parent, View view, int position);
-
     }
 
     //当调用setItemClickListener方法时会自动调用onClick方法
@@ -87,20 +89,20 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return  new ViewHolder(layoutInflater.inflate(R.layout.local_song_tiem, parent, false));
+        return new ViewHolder(layoutInflater.inflate(R.layout.local_song_tiem, parent, false));
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Music music = musicList.get(position);
         String path = FileUtil.getAlbumFilePath(music);
-        Bitmap songImage;
-        if (path == null){
-            songImage = BitmapFactory.decodeResource(context.getResources(),R.mipmap.i_love_my_music);
-        }else {
-            songImage = coverLoader.loadBitmapForPath(path, 54);
+        if (path == null) {
+            holder.songImage.setImageResource(R.mipmap.i_love_my_music);
+        } else {
+            Bitmap songImage = coverLoader.loadBitmapForPath(path, 54);
+            holder.songImage.setImageBitmap(songImage);
         }
-        holder.songImage.setImageBitmap(songImage);
+
         holder.songTitle.setText(music.getTitle());
         holder.songArtist.setText(music.getArtist());
         holder.mCardView.setOnClickListener(this);
@@ -109,20 +111,21 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
 
     @Override
     public void onClick(View view) {
-        int position ;
+        int position;
         switch (view.getId()) {
             case R.id.songItem_cardView:
                 position = mRecyclerView.getChildAdapterPosition(view);
                 onItemClickListener.onItemClick(mRecyclerView, view, position);
                 break;
             case R.id.songItem_Iv_More:
-                View  v = (View) view.getParent().getParent();
+                View v = (View) view.getParent().getParent();
                 position = mRecyclerView.getChildAdapterPosition(v);
                 //HttpClient.getSongListInfo("2",10,0);
                 showShareDiaLog(position);
                 break;
         }
     }
+
     @Override
     public int getItemCount() {
         return musicList != null ? musicList.size() : 0;
@@ -140,7 +143,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         mRecyclerView = null;
     }
 
-    private void showShareDiaLog(final int mPosition){
+    private void showShareDiaLog(final int mPosition) {
         //设置item标题
         final ArrayList<String> s = new ArrayList<>();
         s.add("下一首播放");
@@ -150,7 +153,7 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         dialog = new NormalSelectionDialog.Builder(context)
                 .setlTitleVisible(true)   //设置是否显示标题
                 .setTitleHeight(50)   //设置标题高度
-                .setTitleText("小伙子.想删除我?还是想分享我?")  //设置标题提示文本
+                .setTitleText("提示")  //设置标题提示文本
                 .setTitleTextSize(14) //设置标题字体大小 sp
                 .setTitleTextColor(R.color.titleRed) //设置标题文本颜色
                 .setItemHeight(40)  //设置item的高度
@@ -161,8 +164,11 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
                 .setOnItemListener(new DialogOnItemClickListener() {  //监听item点击事件
                     @Override
                     public void onItemClick(Button button, int position) {
-                        String title = musicList.get(mPosition).getTitle();
-                        Toast.makeText(context, s.get(mPosition)+": "+title, Toast.LENGTH_SHORT).show();
+                        String title = musicList.get(position).getTitle();
+                        Toast.makeText(context, s.get(position) + ": " + title, Toast.LENGTH_SHORT).show();
+                        if ("分享".equals(s.get(position))){
+                            showShare(musicList.get(position));
+                        }
                         dialog.dismiss();
                     }
                 })
@@ -172,10 +178,37 @@ public class LocalMusicAdapter extends RecyclerView.Adapter<LocalMusicAdapter.Vi
         dialog.show();
     }
 
-    public void addAll(List<Music> musics,boolean isClear){
-        if (isClear){
+    public void addAll(List<Music> musics, boolean isClear) {
+        if (isClear) {
             musicList.clear();
         }
         musicList.addAll(musics);
     }
+
+    private void showShare(Music music) {
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle("标题");
+        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+        //oks.setTitleUrl(music.getTitle());
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText(music.getTitle());
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/splash_layout.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl(music.getTitle()+" 不错哦,强烈推荐!! - RunSong");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        //oks.setComment("我是测试评论文本");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(context.getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        //oks.setSiteUrl("http://sharesdk.cn");
+
+        // 启动分享GUI
+        oks.show(context);
+    }
+
 }

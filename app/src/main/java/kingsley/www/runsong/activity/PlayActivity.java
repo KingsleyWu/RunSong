@@ -13,6 +13,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +25,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.cache.CacheMusic;
 import kingsley.www.runsong.entity.Music;
@@ -46,21 +50,47 @@ import static kingsley.www.runsong.utils.Preferences.getPlayMode;
 public class PlayActivity extends BaseActivity implements View.OnClickListener, OnPlayerEventListener {
 
     private static final String TAG = "PlayMusicActivity";
-    private Toolbar mPlayMusicToolbar;
-    private ImageView mPlayMusicIvBack;
-    private TextView mPlayMusicTvTitle;
-    private ImageView mPlayMusicIvMore;
-    private FrameLayout mPlayMusicFrameLayout;
-    private TextView mPlayMusicTvCurrentPosition;
-    private AppCompatSeekBar mPlayMusicSeekBar;
-    private TextView mPlayMusicTvSongDuration;
-    private ImageView mPlayMusicIvPlayMode;
-    private ImageView mPlayMusicIvLastSong;
-    private ImageView mPlayMusicIvPlayPause;
-    private ImageView mPlayMusicIvNextSong;
-    private ImageView mPlayMusicIvMoreList;
-    private ImageView mPlayMusicIvSongBg;
-    private BlurringView mPlayMusicBlurringView;
+    //toolbar
+    @BindView(R.id.play_music_toolbar)
+    public Toolbar mPlayMusicToolbar;
+    @BindView(R.id.play_music_iv_back)
+    public ImageView mPlayMusicIvBack;
+    @BindView(R.id.play_music_tv_title)
+    public TextView mPlayMusicTvTitle;
+    @BindView(R.id.play_music_iv_more)
+    public ImageView mPlayMusicIvMore;
+    @BindView(R.id.play_music_frameLayout)
+    public FrameLayout mPlayMusicFrameLayout;
+    //歌曲时间
+    @BindView(R.id.play_music_tv_currentPosition)
+    public TextView mPlayMusicTvCurrentPosition;
+    @BindView(R.id.playMusicSeekBar)
+    public AppCompatSeekBar mPlayMusicSeekBar;
+    @BindView(R.id.play_music_tv_songDuration)
+    public TextView mPlayMusicTvSongDuration;
+    //播放,模式,更多
+    @BindView(R.id.play_music_iv_playMode)
+    public ImageView mPlayMusicIvPlayMode;
+    @BindView(R.id.play_music_iv_lastSong)
+    public ImageView mPlayMusicIvLastSong;
+    @BindView(R.id.play_music_iv_play_pause)
+    public ImageView mPlayMusicIvPlayPause;
+    @BindView(R.id.play_music_iv_nextSong)
+    public ImageView mPlayMusicIvNextSong;
+    @BindView(R.id.play_music_iv_moreList)
+    public ImageView mPlayMusicIvMoreList;
+
+    @BindView(R.id.play_music_songBg)
+    public ImageView mPlayMusicIvSongBg;
+    @BindView(R.id.playMusicBlurringView)
+    public BlurringView mPlayMusicBlurringView;
+    @BindView(R.id.play_music_DiskCoverView)
+    public DiskCoverView diskCoverView;
+
+    //动画,歌曲图片
+    @BindView(R.id.play_music_LrcView)
+    public LrcView lrcView;
+
     private CoverLoader coverLoader;
     private List<Music> mMusicList;
     private PlayService playService;
@@ -69,8 +99,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
     private boolean isInitView;
     private int playMode;
     private long songDuration;
-    private DiskCoverView diskCoverView;
-    private LrcView lrcView;
+    private Music playingMusic;
     //更新歌词的频率，每秒更新一次
     private int mPlayTimerDuration = 1000;
     //更新歌词的定时器
@@ -82,19 +111,25 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_music_layout);
+        ButterKnife.bind(this);
         //用于把musicChange引用还回给MusicLocalFragment
         //iIsMusicChange = CacheMusic.IsMusicChange;
         mMusicList = CacheMusic.getInstance().getMusicList();
         coverLoader = CoverLoader.getInstance();
         playService = getPlayService();
-        position = 0;
-        playMode = Preferences.getPlayMode();
-        long id = Preferences.getCurrentSongId();
-        for (int i = 0; i < mMusicList.size(); i++) {
-            if (mMusicList.get(i).getId() == id) {
-                position = i;
-                break;
+        playingMusic = playService.getPlayingMusic();
+        if (playingMusic.getType() == Music.Type.LOCAL) {
+            position = 0;
+            playMode = Preferences.getPlayMode();
+            long id = Preferences.getCurrentSongId();
+            for (int i = 0; i < mMusicList.size(); i++) {
+                if (mMusicList.get(i).getId() == id) {
+                    position = i;
+                    break;
+                }
             }
+        }else {
+            position = IConstant.ISONLINEMUSIC;
         }
         //Log.i(TAG, "onCreate: position = " + position);
         isInitView = true;
@@ -107,29 +142,7 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
 
     //初始化控件
     private void initView(int position) {
-        //toolbar
-        mPlayMusicToolbar = (Toolbar) findViewById(R.id.play_music_toolbar);
-        mPlayMusicIvBack = (ImageView) findViewById(R.id.play_music_iv_back);
-        mPlayMusicTvTitle = (TextView) findViewById(R.id.play_music_tv_title);
-        mPlayMusicIvMore = (ImageView) findViewById(R.id.play_music_iv_more);
-        mPlayMusicFrameLayout = (FrameLayout) findViewById(R.id.play_music_frameLayout);
-        //歌曲时间
-        mPlayMusicTvCurrentPosition = (TextView) findViewById(R.id.play_music_tv_currentPosition);
-        mPlayMusicSeekBar = (AppCompatSeekBar) findViewById(R.id.playMusicSeekBar);
-        mPlayMusicTvSongDuration = (TextView) findViewById(R.id.play_music_tv_songDuration);
-        //播放,模式,更多
-        mPlayMusicIvPlayMode = (ImageView) findViewById(R.id.play_music_iv_playMode);
-        mPlayMusicIvLastSong = (ImageView) findViewById(R.id.play_music_iv_lastSong);
-        mPlayMusicIvPlayPause = (ImageView) findViewById(R.id.play_music_iv_play_pause);
-        mPlayMusicIvNextSong = (ImageView) findViewById(R.id.play_music_iv_nextSong);
-        mPlayMusicIvMoreList = (ImageView) findViewById(R.id.play_music_iv_moreList);
-        //动画,歌曲图片
-        diskCoverView = (DiskCoverView) findViewById(R.id.play_music_DiskCoverView);
-        mPlayMusicIvSongBg = (ImageView) findViewById(R.id.play_music_songBg);
         diskCoverView.initNeedle(getPlayService().isPlaying());
-        lrcView = (LrcView) findViewById(R.id.play_music_LrcView);
-
-        mPlayMusicBlurringView = (BlurringView) findViewById(R.id.playMusicBlurringView);
         setBarView(position);
         if (getPlayService().isPlaying()) {
             diskCoverView.start();
@@ -186,29 +199,35 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
             }
             isInitView = false;
         }
-        Music music = mMusicList.get(position);
-        String path = FileUtil.getAlbumFilePath(music);
-        String lrc = parseLrc(music);
+
+        Bitmap songImage;
+        if (position == IConstant.ISONLINEMUSIC){
+            playingMusic = mMusicList.get(position);
+            Glide.with(this).load(playingMusic.getCoverPath()).placeholder(R.mipmap.i_love_my_music).into(mPlayMusicIvSongBg);
+            diskCoverView.setCoverBitmap(mPlayMusicIvSongBg.getDrawingCache());
+        }else {
+            String path = FileUtil.getAlbumFilePath(playingMusic);
+            if (path == null) {
+                songImage = BitmapFactory.decodeResource(getResources(), R.mipmap.i_love_my_music);
+            } else {
+                songImage = coverLoader.loadBitmapForPath(path, 180);
+            }
+            mPlayMusicIvSongBg.setImageBitmap(songImage);
+            songImage = coverLoader.resizeImage(songImage, 300, 300);
+            songImage = coverLoader.createCircleImage(songImage);
+            diskCoverView.setCoverBitmap(songImage);
+        }
+        String lrc = parseLrc(playingMusic);
         ILrcBuilder builder = new LrcBuilder();
         //解析歌词返回LrcRow集合
         List<LrcRow> rows = builder.getLrcRows(lrc);
         //将得到的歌词集合传给mLrcView用来展示
         lrcView.setLrc(rows);
-        Bitmap songImage;
-        if (path == null) {
-            songImage = BitmapFactory.decodeResource(getResources(), R.mipmap.i_love_my_music);
-        } else {
-            songImage = coverLoader.loadBitmapForPath(path, 180);
-        }
-        mPlayMusicIvSongBg.setImageBitmap(songImage);
-        songImage = coverLoader.resizeImage(songImage, 300, 300);
-        songImage = coverLoader.createCircleImage(songImage);
-        diskCoverView.setCoverBitmap(songImage);
         //ImageFastblurUtil.fastblur(songImage,20);
         mPlayMusicBlurringView.setBlurredView(mPlayMusicIvSongBg);
         mPlayMusicBlurringView.invalidate();
-        mPlayMusicTvTitle.setText(music.getTitle());
-        songDuration = music.getDuration();
+        mPlayMusicTvTitle.setText(playingMusic.getTitle());
+        songDuration = playingMusic.getDuration();
         mPlayMusicTvSongDuration.setText(new SimpleDateFormat("mm:ss").format(songDuration));
     }
 
@@ -241,6 +260,9 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private String parseLrc(Music music) {
+        if (music.getType() == Music.Type.ONLINE){
+
+        }
         try {
             String lrcPath = FileUtil.getLrcFilePath(music);
             if (lrcPath != null) {

@@ -8,8 +8,11 @@ package kingsley.www.runsong.m_interface;
  * version: 1.0
  */
 //用于当歌曲变更时更新PlayMusicActivity的歌曲信息视图
-public interface OnPlayerEventListener{
-        void setView(int position);
-        void setSeekBar(int progress);
-        void onPlayerCompletionPlay();
+public interface OnPlayerEventListener {
+
+    void setView(int position);
+
+    void setSeekBar(int progress);
+
+    void onPlayerCompletionPlay();
 }

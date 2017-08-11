@@ -24,6 +24,10 @@
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\internet.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\internet.png"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\ic_launcher_round.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
@@ -34,5 +38,9 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\exit.png",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\exit.png"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi\\my.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\mipmap-hdpi\\my.png"
     }
 ]

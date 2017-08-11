@@ -130,7 +130,7 @@ public class MusicUtils {
         });
     }
 
-    private static void downloadMusicLrc(String lrcUrl, String lrcFileName) {
+    public static void downloadMusicLrc(String lrcUrl, String lrcFileName) {
         HttpClient.downloadFile(lrcUrl, FileUtil.getLrcDir(), lrcFileName, new HttpCallBack<File>() {
             @Override
             public void onSuccess(File file) {

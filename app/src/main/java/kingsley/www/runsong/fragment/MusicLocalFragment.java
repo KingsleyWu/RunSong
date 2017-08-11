@@ -3,7 +3,6 @@ package kingsley.www.runsong.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,14 +18,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
 import kingsley.www.runsong.R;
 import kingsley.www.runsong.activity.PlayActivity;
 import kingsley.www.runsong.adapter.LocalMusicAdapter;
 import kingsley.www.runsong.cache.CacheMusic;
 import kingsley.www.runsong.entity.Music;
+import kingsley.www.runsong.m_interface.IConstant;
 import kingsley.www.runsong.m_interface.IIsMusicChange;
 import kingsley.www.runsong.service.PlayService;
 import kingsley.www.runsong.utils.CoverLoader;
@@ -40,23 +43,29 @@ import kingsley.www.runsong.view.CircleImageView;
 public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapter.OnItemClickListener,
         View.OnClickListener, IIsMusicChange {
     private static final String TAG = "MusicLocalFragment";
-    private CircleImageView mLocalMusicIvSongImage;
-    private LinearLayout mLocalMusicLlPlayBar;
-    private TextView mLocalMusicTvTitle;
-    private TextView mLocalMusicTvArtist;
-    private ImageView mLocalMusicIvPlay;
-    private ImageView mLocalMusicIvMoreList;
+    @BindView(R.id.localMusic_RecyclerView)
+    RecyclerView mLocalMusicRecyclerView;
+    @BindView(R.id.localMusic_Iv_songImage)
+    CircleImageView mLocalMusicIvSongImage;
+    @BindView(R.id.localMusic_Tv_title)
+    TextView mLocalMusicTvTitle;
+    @BindView(R.id.localMusic_Tv_artist)
+    TextView mLocalMusicTvArtist;
+    @BindView(R.id.localMusic_Iv_play)
+    ImageView mLocalMusicIvPlay;
+    @BindView(R.id.localMusic_Iv_moreList)
+    ImageView mLocalMusicIvMoreList;
+    @BindView(R.id.localMusic_Ll_playBar)
+    LinearLayout mLocalMusicLlPlayBar;
+    @BindView(R.id.localMusic_tv_isEmpty)
+    TextView mLocalMusicTvIsEmpty;
     private LocalMusicAdapter adapter;
     private Context context;
     private int mPosition = -1;
     private Music music;
     private Animation rotateAnimation;
     private PlayService mPlayService;
-    public boolean isStartInit = true;
-    private boolean isFirstLoad = true;
     private long songId;
-    private boolean isPause;
-    private TextView mLocalMusicTvIsEmpty;
     protected List<Music> mMusicList;
 
     public MusicLocalFragment() {
@@ -64,16 +73,16 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
         mPlayService = getPlayService();
     }
 
+    @Override
+    public View createMyView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mMusicList = new ArrayList<>();
+        return inflater.inflate(R.layout.fragment_loacl_music, container, false);
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_loacl_music, container, false);
-        mMusicList = new ArrayList<>();
-        initView(view);
+    public void doBusiness() {
+        initView();
         setListeners();
-        return view;
     }
 
     @Override
@@ -82,8 +91,7 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
         this.context = context;
     }
 
-    private void initView(View view) {
-        RecyclerView mLocalMusicRecyclerView = (RecyclerView) view.findViewById(R.id.localMusic_RecyclerView);
+    private void initView() {
         mLocalMusicRecyclerView.setHasFixedSize(true);
         //瀑布流
         //RecyclerView.LayoutManager  layoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
@@ -91,16 +99,7 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
         mLocalMusicRecyclerView.setLayoutManager(layoutManager);
         adapter = new LocalMusicAdapter(getActivity(), mMusicList);
         mLocalMusicRecyclerView.setAdapter(adapter);
-
         mLocalMusicRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayout.HORIZONTAL));
-
-        mLocalMusicLlPlayBar = (LinearLayout) view.findViewById(R.id.localMusic_Ll_playBar);
-        mLocalMusicIvSongImage = (CircleImageView) view.findViewById(R.id.localMusic_Iv_songImage);
-        mLocalMusicTvTitle = (TextView) view.findViewById(R.id.localMusic_Tv_title);
-        mLocalMusicTvArtist = (TextView) view.findViewById(R.id.localMusic_Tv_artist);
-        mLocalMusicIvPlay = (ImageView) view.findViewById(R.id.localMusic_Iv_play);
-        mLocalMusicIvMoreList = (ImageView) view.findViewById(R.id.localMusic_Iv_moreList);
-        mLocalMusicTvIsEmpty = (TextView) view.findViewById(R.id.localMusic_tv_isEmpty);
 
         songId = Preferences.getCurrentSongId();
         //Log.i(TAG, "initView: songId=" + songId);
@@ -128,27 +127,33 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
 
     @Override
     public void onItemClick(RecyclerView parent, View view, int position) {
-        mPlayService.playPause(position);;
+        mPlayService.playPause(position);
     }
 
     public void setView(int position) {
         // Log.i(TAG, "setView: mPosition =" + mPosition + "   position =" + position);
         //boolean isPlaying = mPlayService.isPlaying();
         if (mMusicList.size() > 0) {
-            music = mMusicList.get(position);
-            String path = FileUtil.getAlbumFilePath(music);
-            if (path != null)
-                mLocalMusicIvSongImage.setImageBitmap(CoverLoader.getInstance().loadBitmapForPath(path, 40));
-            else {
-                mLocalMusicIvSongImage.setImageResource(R.mipmap.i_love_my_music);
+            if (position == IConstant.ISONLINEMUSIC) {
+                music = CacheMusic.getOnLineMusic();
+                Glide.with(this).load(music.getCoverPath()).into(mLocalMusicIvSongImage);
+            } else {
+                music = mMusicList.get(position);
+                String path = FileUtil.getAlbumFilePath(music);
+                if (path != null)
+                    mLocalMusicIvSongImage.setImageBitmap(CoverLoader.getInstance().loadBitmapForPath(path, 40));
+                else {
+                    mLocalMusicIvSongImage.setImageResource(R.mipmap.i_love_my_music);
+                }
             }
+
             mLocalMusicTvTitle.setText(music.getTitle());
             mLocalMusicTvArtist.setText(music.getArtist());
             if (mPlayService.isPrepare) {
                 Log.d(TAG, "setView: playing");
                 mLocalMusicIvPlay.setImageResource(R.mipmap.stop);
                 rotaView(mLocalMusicIvSongImage, 0);
-            }else {
+            } else {
                 Log.d(TAG, "setView: noPlaying");
                 mLocalMusicIvPlay.setImageResource(R.mipmap.play);
                 mLocalMusicIvSongImage.clearAnimation();
@@ -196,12 +201,6 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.i(TAG, "onDetach: onDestroyView");
-    }
-
-    @Override
     public void onStart() {
         super.onStart();
         Log.d(TAG, "onStart: ");
@@ -212,43 +211,13 @@ public class MusicLocalFragment extends BaseFragment implements LocalMusicAdapte
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.d(TAG, "onCreate: ");
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         Log.d(TAG, "onResume: ");
-        if (CacheMusic.getInstance().getMusicList() != null){
-            adapter.addAll(CacheMusic.getInstance().getMusicList(),true);
+        if (CacheMusic.getInstance().getMusicList() != null) {
+            adapter.addAll(CacheMusic.getInstance().getMusicList(), true);
             setView(getSongPosition());
         }
-
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.d(TAG, "onActivityCreated: ");
-    }
-
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        Log.d(TAG, "onAttachFragment: ");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy: ");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause: ");
-    }
 }

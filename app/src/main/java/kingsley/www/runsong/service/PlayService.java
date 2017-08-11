@@ -40,6 +40,8 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
     public long mPlayingCurrentPosition;
     private OnPlayerEventListener onPlayerEventListener;
     public boolean isPrepare;
+    private Handler handler;
+    private IIsMusicChange musicChange;
 
     public PlayService() {
     }
@@ -49,17 +51,8 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         super.onCreate();
         mMusicList = new ArrayList<>();
         binder = new PlayBinder();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //加载本地歌曲数据
-                MusicUtils.scanMusic(getApplicationContext(), mMusicList);
-                //把本地歌曲数据给到CacheMusic
-                CacheMusic.getInstance().setMusicList(mMusicList);
-                //Log.i(TAG, "onCreate: mMusicList="+mMusicList);
-            }
-        }).start();
-        final Handler handler = new Handler(getMainLooper());
+        initMusic();
+        handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -76,6 +69,19 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         //设置一首歌播放完毕后的监听
         mPlayer.setOnCompletionListener(this);
         mPlayer.setOnErrorListener(this);
+    }
+
+    public void initMusic() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //加载本地歌曲数据
+                MusicUtils.scanMusic(getApplicationContext(), mMusicList);
+                //把本地歌曲数据给到CacheMusic
+                CacheMusic.getInstance().setMusicList(mMusicList);
+                //Log.i(TAG, "onCreate: mMusicList="+mMusicList);
+            }
+        }).start();
     }
 
     //绑定服务器时调用
@@ -123,7 +129,6 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
 
     //歌曲变更需更新View的回调方法
     private void updateView(int mNextPlayPosition) {
-        IIsMusicChange musicChange;
         if ((musicChange = CacheMusic.isMusicChange) != null)
             //播放位置变化
             musicChange.isMusicChange(mNextPlayPosition);
@@ -150,10 +155,16 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         if (music.equals(mPlayingMusic)) {
             mPlayer.seekTo((int) mPlayingCurrentPosition);
             mPlayer.start();
-            Log.d(TAG, "play: dasfasdfas");
+            Log.d(TAG, "play: 同一首歌");
         } else {
             //当前播放的音乐
             mPlayingMusic = music;
+            if (music.getType() == Music.Type.ONLINE) {
+                isPrepare = true;
+                if ((musicChange = CacheMusic.isMusicChange) != null)
+                    //播放位置变化
+                    musicChange.isMusicChange(IConstant.ISONLINEMUSIC);
+            }
             try {
                 //让mediaPlayer处于空闲状态
                 mPlayer.reset();
@@ -253,6 +264,10 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         return mPlayer.getDuration();
     }
 
+    public Music getPlayingMusic(){
+        return mPlayingMusic;
+    }
+
     @Override
     public void onDestroy() {
         stop();
@@ -289,7 +304,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
         return mediaplayer;
     }
 
-    private int getmPlayingPosition() {
+    public void updatePlayingPosition() {
         int position = 0;
         long id = Preferences.getCurrentSongId();
         for (int i = 0; i < mMusicList.size(); i++) {
@@ -298,6 +313,7 @@ public class PlayService extends Service implements MediaPlayer.OnCompletionList
                 break;
             }
         }
-        return position;
+        mPlayingPosition = position;
+        Preferences.saveCurrentSongId(mMusicList.get(mPlayingPosition).getId());
     }
 }

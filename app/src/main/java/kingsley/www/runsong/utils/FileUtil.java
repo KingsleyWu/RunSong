@@ -40,7 +40,7 @@ public class FileUtil {
         return mkdirs(dir);
     }
 
-    static String getLrcDir() {
+    public static String getLrcDir() {
         String dir = getAppDir() + "/Lyric/";
         return mkdirs(dir);
     }
@@ -118,19 +118,19 @@ public class FileUtil {
         return file.exists();
     }
 
-    static String getMp3FileName(String artist, String title) {
+    public static String getMp3FileName(String artist, String title) {
         return getFileName(artist, title) + MP3;
     }
 
-    static String getLrcFileName(String artist, String title) {
+    public static String getLrcFileName(String artist, String title) {
         return getFileName(artist, title) + LRC;
     }
 
-    static String getAlbumFileName(String artist, String title) {
+    public static String getAlbumFileName(String artist, String title) {
         return getFileName(artist, title);
     }
 
-    static String getFileName(String artist, String title) {
+    public static String getFileName(String artist, String title) {
         artist = stringFilter(artist);
         title = stringFilter(title);
         if (TextUtils.isEmpty(artist)) {

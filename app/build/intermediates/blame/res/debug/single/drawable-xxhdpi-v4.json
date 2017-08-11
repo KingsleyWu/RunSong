@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ssdk_weibo_empty_failed.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable-xxhdpi-v4\\ssdk_weibo_empty_failed.png"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },

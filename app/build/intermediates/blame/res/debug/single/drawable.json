@@ -28,24 +28,28 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\smssdk_country_group_scroll_down.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\811fe2a007996247b288cc58440444d696bd43ba\\output\\res\\drawable\\smssdk_country_group_scroll_down.xml"
-    },
-    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\bg_book.xml",
         "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\bg_book.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\smssdk_country_group_scroll_down.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\811fe2a007996247b288cc58440444d696bd43ba\\output\\res\\drawable\\smssdk_country_group_scroll_down.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_weibo_retry_btn_press.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\ssdk_weibo_retry_btn_press.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\notification_icon_background.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_switch_thumb_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_switch_thumb_material.xml"
     },
     {
-        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\notification_icon_background.xml"
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
+        "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
@@ -62,6 +66,10 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_weibo_retry_btn_default.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\ssdk_weibo_retry_btn_default.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_item_background_holo_light.xml",
@@ -128,6 +136,10 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\a59a75c4b28bba24cb523680535d802815a27f51\\output\\res\\drawable\\selector_widget_actiondialog_top.xml"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_selector.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\btn_selector.xml"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\notification_tile_bg.xml"
     },
@@ -142,6 +154,10 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\smssdk_country_group_scroll_up.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\811fe2a007996247b288cc58440444d696bd43ba\\output\\res\\drawable\\smssdk_country_group_scroll_up.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_shape_normal.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\btn_shape_normal.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
@@ -174,6 +190,10 @@
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_voice_search_api_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_ic_voice_search_api_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\btn_shape_pre.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\btn_shape_pre.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\selector_widget_md_dialog.xml",
@@ -220,8 +240,16 @@
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\811fe2a007996247b288cc58440444d696bd43ba\\output\\res\\drawable\\smssdk_corners_bg.xml"
     },
     {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_weibo_common_shadow_top.9.png",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\ssdk_weibo_common_shadow_top.9.png"
+    },
+    {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_radio_material.xml",
         "source": "C:\\Users\\Administrator\\.android\\build-cache\\1282b1a21622c8701b113f36477b0411c3d5c681\\output\\res\\drawable\\abc_btn_radio_material.xml"
+    },
+    {
+        "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ssdk_weibo_retry_btn_selector.xml",
+        "source": "D:\\AndroidStudioProjects\\RunSong\\app\\src\\main\\res\\drawable\\ssdk_weibo_retry_btn_selector.xml"
     },
     {
         "merged": "D:\\AndroidStudioProjects\\RunSong\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",
